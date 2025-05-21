@@ -45,7 +45,7 @@
                     <!-- <li><a href="index.php?id=<?php EchoScreenIndex("sign_in");?>">Sing In</a></li> -->
                     <li><a href="index.php?id=<?php EchoScreenIndex("profile");?>">Perfil</a></li>
                     <?php
-                        if($_SESSION['rol'] == 'ofertante'){
+                        if($_SESSION['rol'] == 'administrator'){
                     ?>
                     <li><a href="index.php?id=<?php EchoScreenIndex("ofertar_servicio");?>">Ofertar Servicio</a></li>
                     <li><a href="index.php?id=<?php EchoScreenIndex("mis_ofertas");?>">Mis Ofertas</a></li>

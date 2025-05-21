@@ -10,15 +10,17 @@
             "host" => "localhost",
             "user" => "root",
             "pass" => "",
-            "db" => "ceramicart"
-        ),
+            "db" => "rally_ranking"
+        )
         
         // SQL FILTERS
+        /*
         "where" => array(
             "es_usuario_ofertante" => " uos.id_usuario = oes.id_ofertante ",
             "es_su_oferta" => " oes.id_ofertante = oas.id_ofertante AND oas.id_servicio = sos.id_servicio ",
             "es_su_solicitud" => " uos.id_usuario = ses.id_usuario AND ses.id_servicio = sos.id_servicio ",
         ),
+        */
     );
     /* END VARIABLES */
 

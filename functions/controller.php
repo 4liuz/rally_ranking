@@ -2,16 +2,20 @@
 
 $id = $_GET['id']??"4";
 
+// "p" = Audience (público), "P" = Participant, "A" = Admin
 $screens = array (
     "1"   => "login",
     "2"   => "sign_in",
     "3"   => "profile",
     "4"   => "home",
-    "5"   => "ofertar_servicio",
-    "6"   => "mis_ofertas",
-    "7"   => "solicitar_servicio",
-    "8"   => "ver_servicio",
-    "9"   => "mis_solicitudes",
+    "5"   => "gallery",       // "p": public gallery
+    "6"   => "post",          // "p": photo voting page
+    "7"   => "my_gallery",    // "P": self posted photos gallery 
+    "8"   => "my_post",       // "P": photo status page
+    "9"   => "new_post",      // "P": post creation page
+    "10"  => "new_rally",     // "A": rally creation page
+    "11"  => "my_requests",   // "A": pending upload requests
+    "12"  => "post_approval", // "A": request approval page
     "200" => "header",
     "202" => "menu",
     "203" => "footer"
