@@ -1,0 +1,35 @@
+* {
+    --color-1: #3f3f3f;
+    --color-2: #333333;
+    --color-3: #2c2c2c;
+    --color-4: #252525;
+    --color-5: #1e1e1e;
+    --color-6: #171717;
+    --color-7: #101010;
+    --color-8: #090909;
+    color: #fff;
+}
+
+.side-menu-list > li > a:hover{
+    color: #fff!important;
+}
+
+.side-menu-list > li > a, .footer{
+    color: #aaa!important;
+}
+
+input, select, textarea {
+    color: #444;
+}
+
+.card{
+    background-color: var(--color-1);
+}
+
+body{
+    background-color: var(--color-2);
+}
+
+.side-menu-list > li > a:hover{
+    background-color: var(--color-5);
+}

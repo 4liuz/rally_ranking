@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    color: #666;
+    box-sizing: border-box;
+    font-family: "Bitter", serif;
+    
+/* CUSTOM VARIABLES */
+/************RWD WIDTH************/
+    --w-1: 8%;
+    --w-2: 16%;
+    --w-3: 24%;
+    --w-4: 32%;
+    --w-5: 40%;
+    --w-6: 48%;
+    --w-7: 56%;
+    --w-8: 64%;
+    --w-9: 72%;
+    --w-10: 80%;
+    --w-11: 88%;
+    --w-12: 100%;
+/**********END RWD WIDTH**********/
+/***********RWD MARGINS***********/
+    --m-1:1%;
+    --m-2:2%;
+    --m-3:3%;
+    --m-4:4%;
+/*********END RWD MARGINS*********/
+
+}
+
+input {
+    height: 2rem;
+    padding:0.5rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    border-style: solid;
+    border-color: var(--color-5);
+    transition: 0.15s ease-in-out color,
+                0.15s ease-in-out box-shadow,
+                0.15s ease-in-out border;
+}
+
+input[type='checkbox'] {
+    height: auto;
+    margin-left: 1rem;
+}
+
+input:hover, input:focus {
+    border-color: var(--color-7)!important;
+    outline: none;
+}
+
+input:focus {
+    box-shadow: var(--color-5) 0 2px 5px;
+}
+
+input[type="password"] {
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.15rem;
+}
+
+button, .button {
+    font-family: 'Arial';
+    font-weight: 600;
+    letter-spacing: 0.06rem;
+    margin: 0rem 0;
+    border: none;
+    border-radius: 0.15rem;
+    outline: none;
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    transition: 0.15s ease-in-out box-shadow,
+                0.1s ease-in-out background-color,
+                0.1s ease-in-out border;
+}
+
+button:hover, button:focus, .button:hover, .button:focus {
+    cursor: pointer;
+    box-shadow: var(--color-5) 0 1px 4px;
+}
+
+button:active, .button {
+    /* border-color: var(--color-7); */
+    background-color: var(--color-8);
+}
+
+button[type="submit"] {
+    background-color: var(--color-7);
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}

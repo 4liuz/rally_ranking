@@ -1,0 +1,264 @@
+/* START DISPLAY */
+.d-block {
+    display: block;
+}
+.d-inline {
+    display: inline;
+}
+.d-flex {
+    display: flex;
+}
+.d-none {
+    display: none;
+}
+/* END DISPLAY */
+
+
+
+/* START FLEX SETTINGS */
+/* JUSTIFY CONTENT */
+.justify-content-start {
+    justify-content: start;
+}
+.justify-content-end {
+    justify-content: end;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-basline {
+    justify-content: baseline;
+}
+.justify-content-around {
+    justify-content: space-around;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.justify-content-strech {
+    justify-content: stretch;
+}
+
+/* ALIGN ITEMS */
+.align-items-start {
+    align-items: start;
+}
+.align-items-end {
+    align-items: end;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-basline {
+    align-items: baseline;
+}
+.align-items-around {
+    align-items: space-around;
+}
+.align-items-between {
+    align-items: space-between;
+}
+.align-items-evenly {
+    align-items: space-evenly;
+}
+.align-items-strech {
+    align-items: stretch;
+}
+
+/* ALIGN CONTENT */
+.align-content-start {
+    align-content: start;
+}
+.align-content-end {
+    align-content: end;
+}
+.align-content-center {
+    align-content: center;
+}
+.align-content-basline {
+    align-content: baseline;
+}
+.align-content-around {
+    align-content: space-around;
+}
+.align-content-between {
+    align-content: space-between;
+}
+.align-content-evenly {
+    align-content: space-evenly;
+}
+.align-content-strech {
+    align-content: stretch;
+}
+
+/* WRAP */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.no-wrap {
+    flex-wrap: nowrap;
+}
+/* END FLEX SETTINGS */
+
+
+
+/* START MEDIA QUERIES */
+/* LANDSCAPE SCREEN */
+@media (orientation: landscape) {
+    .login-bg-image {
+        background-image: url("../src/fabricar_ceramica_2.jpg");
+        background-size: cover;
+        background-position-x: center;
+    }
+}
+/* PORTRAIT SCREEN */
+@media (orientation: portrait) {
+    .login-bg-image {
+        background-image: url("../src/fabricar_ceramica_1.jpg");
+        background-size: cover;
+        background-position-y: center;
+    }
+}
+/* S: MOBILE VERTICAL */
+@media (max-width: 576px) {
+
+    /* START DISPLAY */
+    .d-s-block {
+        display: block;
+    }
+    .d-s-inline {
+        display: inline;
+    }
+    .d-s-flex {
+        display: flex;
+    }
+    .d-s-none {
+        display: none;
+    }
+    /* END DISPLAY */
+    /* START LAYOUT */
+    .label-input-row-1{
+        flex-wrap: wrap;
+    }
+    .label-input-row-1 label{
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.25rem;
+    }
+    .label-input-row-1 input{
+        width: 100%;
+    }
+    /* START LOGIN */
+    .login-div {
+        width: 22rem;
+    }
+    .login-title {
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+    .login-title img {
+        width: 4rem;
+    }
+    .login-box {
+        width: 14rem;
+    }
+    /* END LOGIN */
+    /* END LAYOUT */
+}
+
+/* M: TABLET, MOBILE LANDSCAPE */
+@media (min-width: 576px) and (max-width: 992px) {
+
+    /* START DISPLAY */
+    .d-m-block {
+        display: block;
+    }
+    .d-m-inline {
+        display: inline;
+    }
+    .d-m-flex {
+        display: flex;
+    }
+    .d-m-none {
+        display: none;
+    }
+    /* END DISPLAY */
+}
+
+/* L: LABTOP */
+@media (min-width: 992px) and (max-width: 1400px) {
+    
+    /* START DISPLAY */
+    .d-l-block {
+        display: block;
+    }
+    .d-l-inline {
+        display: inline;
+    }
+    .d-l-flex {
+        display: flex;
+    }
+    .d-l-none {
+        display: none;
+    }
+    /* END DISPLAY */
+}
+
+/* XL: SCREEN */
+@media (min-width: 1400px) {
+    
+    /* START DISPLAY */
+    .d-xl-block {
+        display: block;
+    }
+    .d-xl-inline {
+        display: inline;
+    }
+    .d-xl-flex {
+        display: flex;
+    }
+    .d-xl-none {
+        display: none;
+    }
+    /* END DISPLAY */
+}
+/* END DISPLAY MEDIA QUERIES */
+
+
+
+/* START MIN WIDTH */
+.min-1{
+    min-width: 2vw;
+}
+.min-2{
+    min-width: 4vw;
+}
+.min-3{
+    min-width: 6vw;
+}
+.min-4{
+    min-width: 8vw;
+}
+.min-5{
+    min-width: 10vw;
+}
+.min-6{
+    min-width: 12vw;
+}
+.min-7{
+    min-width: 14vw;
+}
+.min-8{
+    min-width: 16vw;
+}
+.min-9{
+    min-width: 18vw;
+}
+.min-10{
+    min-width: 20vw;
+}
+/* END MIN WIDTH */
