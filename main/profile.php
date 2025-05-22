@@ -1,10 +1,14 @@
 <?php
     $has_failed = isset($_SESSION['failed_sign_in'])?1:0;
-    $user_data = GetUser($_SESSION['usuario']);
+    // $user_data = GetUser($_SESSION['usuario']);
+    // Borrar en producción y descomentar arriba
+    $user_data = new user_data();
 ?>
 <div class="card">
     <div class="card-head">
-        <span><?php echo($_SESSION['usuario']);?></span>
+        <!-- <span><?php echo($_SESSION['usuario']);?></span> -->
+        <!-- Borrar en producción y descomentar arriba -->
+        <span>Mi Perfil / Perfil de usuario</span>
     </div>
     <div class="card-body">
         <div class="full-body-form">
@@ -53,9 +57,10 @@
                 <?php
                     }
                 ?>
+                <!--
                 <div class="label-input-row-1">
                     <label for="telefono">Teléfono:</label>
-                    <input id="telefono" name="telefono" type="text" value="<?php echo $user_data->telefono;?>" />
+                    <input id="telefono" name="telefono" type="text" value="<?php //echo $user_data->telefono;?>" />
                 </div>
                 <?php
                     if($has_failed){
@@ -68,11 +73,13 @@
                 ?>
                 <div class="d-flex justify-content-end">
                     <label for="ofertante">Quiero ser Ofertante:</label>
-                    <input id="ofertante" name="ofertante" type="checkbox"<?php echo CheckOferer($user_data->usuario)?" checked":"";?> />
+                    <input id="ofertante" name="ofertante" type="checkbox"<?php //echo CheckOferer($user_data->usuario)?" checked":"";?> />
                 </div>
+                -->
                 <div class="d-flex justify-content-end">
-                    <input hidden id="id_usuario" name="id_usuario" type="text" value="<?php echo $user_data->id_usuario;?>" /> 
-                    <button class="delete-button" <?php echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Borrar Cuenta</button>
+                    <input hidden id="id_usuario" name="id_usuario" type="text" value="<?php //echo $user_data->id_usuario;?>" /> 
+                    <button class="delete-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Borrar Cuenta</button>
+                    <button class="block-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Baja</button>
                     <button type="submit">Cambiar</button>
                 </div>
             </form>

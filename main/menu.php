@@ -39,24 +39,29 @@
                 <ul class="side-menu-list">
                     <li><a href="index.php?id=<?php EchoScreenIndex("home");?>">Home</a></li><!-- TMP: Ocultar en producicón -->
                     <?php
-                    if(isset($_SESSION['rol'])){
+                    //if(!isset($_SESSION['rol'])){
                     ?>
-                    <!--<li><a href="index.php?id=<?php EchoScreenIndex("login");?>">Login</a></li> -->
-                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("sign_in");?>">Sing In</a></li> -->
+                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("gallery");?>">Galería</a></li> -->
+                    <?php
+                    //} elseif($_SESSION['rol']=='Participante') {
+                    ?>
                     <li><a href="index.php?id=<?php EchoScreenIndex("profile");?>">Perfil</a></li>
+                    <li><a href="index.php?id=<?php EchoScreenIndex("new_post");?>">Subir Fotos</a></li>
+                    <li><a href="index.php?id=<?php EchoScreenIndex("my_gallery");?>">Mis Fotos</a></li>
                     <?php
-                        if($_SESSION['rol'] == 'administrator'){
+                    //} elseif($_SESSION['rol']=='Administrador') {
                     ?>
-                    <li><a href="index.php?id=<?php EchoScreenIndex("ofertar_servicio");?>">Ofertar Servicio</a></li>
-                    <li><a href="index.php?id=<?php EchoScreenIndex("mis_ofertas");?>">Mis Ofertas</a></li>
+                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("new_rally");?>">Comenzar Rally</a></li> -->
+                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("my_requests");?>">Confirmar Fotos</a></çli> -->
+                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("manage_profiles");?>">Gestionar Participantes</a></li> -->
                     <?php
-                        }
+                    //}
                     ?>
-                    <li><a href="index.php?id=<?php EchoScreenIndex("solicitar_servicio");?>">Solicitar Servicio</a></li>
-                    <li><a href="index.php?id=<?php EchoScreenIndex("mis_solicitudes");?>">Mis Solicitudes</a></li>
-                    <?php
-                    }
-                    ?>
+                    <!-- <li><a href="index.php?id=<?php EchoScreenIndex("post");?>">post</a></li> -->
+                    <!--
+                    <li><a href="index.php?id=<?php EchoScreenIndex("my_post");?>">my_post</a></li>
+                    <li><a href="index.php?id=<?php EchoScreenIndex("post_approval");?>">post_approval</a></li>
+    -->
                 </ul>
             </div>
         </div>

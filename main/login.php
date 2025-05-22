@@ -3,7 +3,7 @@
         <div class="login-div">
             <div class="login-title">
                 <img src="src/logo_c.png" />
-                <span>Cerámicart</span>
+                <span>Rally<br>Ranking</span>
             </div>
             <div class="login-box">
                 <form action="controller/process_login.php" method="post">
@@ -32,6 +32,22 @@
                     }
                     ?>
                     <!-- END IF LOGIN FAILED -->
+
+                    <!-- START IF USER LOCKED -->
+                    <?php
+                    if(isset($_SESSION['user_locked'])){
+                        if($_SESSION['user_locked'] == 1){
+                    ?>
+
+                    <div class="failed-form">
+                        <span>Su usuario está dado de baja. Comuníquese con el administrador para volver a acceder</span>
+                    </div>
+
+                    <?php
+                        }
+                    }
+                    ?>
+                    <!-- END IF USER LOCKED -->
 
                     <div class="d-flex justify-content-end">
                         <button type="submit">Entrar</button>

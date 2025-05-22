@@ -3,7 +3,8 @@
 ?>
 <div class="card">
     <div class="card-head">
-        <span>Crear Usuario</span>
+        <span>¡Únete a la aventura!</span>
+        <p>¡Regístrate como participante y demuestra que puedes ser el <strong>#1</strong> del ranking!</p>
     </div>
     <div class="card-body">
         <div class="full-body-form">
@@ -52,6 +53,7 @@
                 <?php
                     }
                 ?>
+                <!--
                 <div class="label-input-row-1">
                     <label for="telefono">Teléfono:</label>
                     <input id="telefono" name="telefono" type="text" />
@@ -64,7 +66,8 @@
                 </div>
                 <?php
                     }
-                ?>
+                    ?>
+                    -->
                 <div class="d-flex justify-content-end">
                     <button type="submit">Crear</button>
                 </div>

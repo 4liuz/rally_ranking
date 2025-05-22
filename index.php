@@ -1,6 +1,5 @@
 <?php
 require_once("functions/functions.php");
-require_once("defines/es.php");
 
 session_start();
 ?>

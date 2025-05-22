@@ -206,6 +206,12 @@
         display: none;
     }
     /* END DISPLAY */
+    /* START GALLERY */
+    .gallery{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    /* END GALLERY */
+
 }
 
 /* XL: SCREEN */
@@ -225,6 +231,12 @@
         display: none;
     }
     /* END DISPLAY */
+    /* START GALLERY */
+    .gallery{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    /* END GALLERY */
+
 }
 /* END DISPLAY MEDIA QUERIES */
 

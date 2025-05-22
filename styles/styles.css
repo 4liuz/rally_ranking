@@ -30,7 +30,7 @@
     margin-top: 0.5rem;
     font-size: 2.5rem;
     font-weight: 600;
-    text-align: center;
+    text-align: left;
 }
 
 .login-title img {
@@ -109,15 +109,22 @@ body {
 }
 
 .card-head {
+    margin-bottom: 4rem;
+}
+
+.card-head span {
     font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 4rem;
+}
+
+.card-head p {
+    margin: 1rem 0 2rem 0;
 }
 
 /** START FORMS **/
 .label-input-row-1 {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     column-gap: 0.6rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
@@ -142,9 +149,6 @@ body {
     margin-bottom: 1rem;
 }
 
-.delete-button{
-    margin-right: 0.5rem;
-}
 /*
 .eye {
     display: flex;
@@ -219,7 +223,6 @@ body {
 
 .sign-button {
     margin: 0.5rem 0 0.5rem 0.5rem;
-    background-color: var(--color-6);
     transition:
         opacity 0.15s ease-in-out;
 }
@@ -286,5 +289,45 @@ body {
     color: #fff!important;
 }
 /** END SIDE MENU **/
+
+/** START GALLERY **/
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+
+}
+
+.gallery-cell {
+    aspect-ratio: 1/1;
+    transition: transform ease-in-out 0.13s;
+    /*eliminar en producción*/
+    background-color: #fff;
+}
+
+.gallery-cell:hover {
+    transform: scale(1.1);
+    
+}
+
+.gallery-cell:active {
+    transform: scale(1.06);
+}
+
+.post-image{
+    width:100%;
+    /* Eliminar en producción */
+    background-color: #fff;
+    height: 450px;
+}
+
+.vote-box {
+    width: 90%;
+    margin: 1rem auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/** END GALLERY **/
 
 /* END LAYOUT */

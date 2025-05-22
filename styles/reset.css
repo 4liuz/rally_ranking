@@ -70,7 +70,6 @@ button, .button {
     border: none;
     border-radius: 0.15rem;
     outline: none;
-    color: #fff;
     padding: 0.5rem 0.8rem;
     transition: 0.15s ease-in-out box-shadow,
                 0.1s ease-in-out background-color,
@@ -82,13 +81,25 @@ button:hover, button:focus, .button:hover, .button:focus {
     box-shadow: var(--color-5) 0 1px 4px;
 }
 
-button:active, .button {
-    /* border-color: var(--color-7); */
-    background-color: var(--color-8);
+button{
+    margin-right: 0.5rem;
+    color: #444;
+    background-color: #AAA;
 }
 
-button[type="submit"] {
-    background-color: var(--color-7);
+button:active{
+    color: #222;
+    background-color: #777;
+}
+
+button[type="submit"], .sign-button {
+    background-color: var(--color-6);
+    color: #FFF;
+}
+
+button[type="submit"]:active, .sign-button:active {
+    background-color: var(--color-8);
+    color: #FFF;
 }
 
 ul, ol {
