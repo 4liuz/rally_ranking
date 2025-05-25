@@ -144,11 +144,11 @@ body {
     width: 50%;
     margin-left: 20%;
 }
-
+/*
 .d-flex:has( > #ofertante) {
     margin-bottom: 1rem;
 }
-
+*/
 /*
 .eye {
     display: flex;
@@ -256,7 +256,7 @@ body {
     width: 4rem;
 }
 
-.side-menu.collapse .side-menu-head, .side-menu.collapse .sign-button{
+.side-menu.collapse .side-menu-body, .side-menu.collapse .sign-button{
     opacity: 0%;
 }
 
@@ -307,7 +307,7 @@ body {
 
 .gallery-cell:hover {
     transform: scale(1.1);
-    
+    cursor: pointer;
 }
 
 .gallery-cell:active {
@@ -320,7 +320,9 @@ body {
     background-color: #fff;
     height: 450px;
 }
+/** END GALLERY **/
 
+/** START POST **/
 .vote-box {
     width: 90%;
     margin: 1rem auto 0 auto;
@@ -328,6 +330,39 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-/** END GALLERY **/
+
+.vote-box button {
+    display: flex;
+    align-items: center;
+}    
+/** END POST **/
 
 /* END LAYOUT */
+
+/* START STATUS */
+.status{
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: #AAA;
+    color: #000;
+}
+
+.approved{
+    background-color: #3d3;
+    box-shadow: 0 0 0.2rem 0 #9f9;
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0 #000;
+}
+.rejected{
+    background-color: #d33;
+    box-shadow: 0 0 0.2rem 0 #f99;
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0 #000;
+}
+.pending{
+    background-color: #dd3;
+    box-shadow: 0 0 0.2rem 0 #ff9;
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0 #000;
+}
+/* END STATUS */

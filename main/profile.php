@@ -76,7 +76,7 @@
                     <input id="ofertante" name="ofertante" type="checkbox"<?php //echo CheckOferer($user_data->usuario)?" checked":"";?> />
                 </div>
                 -->
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end column-gap-5">
                     <input hidden id="id_usuario" name="id_usuario" type="text" value="<?php //echo $user_data->id_usuario;?>" /> 
                     <button class="delete-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Borrar Cuenta</button>
                     <button class="block-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Baja</button>

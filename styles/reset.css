@@ -42,11 +42,6 @@ input {
                 0.15s ease-in-out border;
 }
 
-input[type='checkbox'] {
-    height: auto;
-    margin-left: 1rem;
-}
-
 input:hover, input:focus {
     border-color: var(--color-7)!important;
     outline: none;
@@ -56,11 +51,24 @@ input:focus {
     box-shadow: var(--color-5) 0 2px 5px;
 }
 
+input[type='checkbox'] {
+    height: auto;
+    margin-left: 1rem;
+}
+
 input[type="password"] {
     font-weight: 900;
     font-size: 1.3rem;
     letter-spacing: 0.15rem;
 }
+
+input[type="date"], input[type="number"].spinner {
+    width: 8rem !important;
+}
+
+/* input[type="number"].spinner {
+
+} */
 
 button, .button {
     font-family: 'Arial';
@@ -82,7 +90,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 }
 
 button{
-    margin-right: 0.5rem;
+    /* margin-left: 0.5rem; */
     color: #444;
     background-color: #AAA;
 }
@@ -108,4 +116,12 @@ ul, ol {
 
 a{
     text-decoration: none;
+}
+
+i {
+    margin-left: 0.5rem;
+}
+
+label{
+    text-align: right ;
 }

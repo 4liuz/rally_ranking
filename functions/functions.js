@@ -47,6 +47,15 @@ function CenterSpacedWords() {
     return wordlist;
 } CenterSpacedWords()
 
+function GetToday() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+}
+
 /* START EVENT LISTENERS */
 document.querySelector(".burguer-icon").addEventListener("click", () => {
     let side_menu = document.querySelector(".side-menu");
@@ -57,14 +66,21 @@ document.querySelector(".burguer-icon").addEventListener("click", () => {
     if(side_menu.classList.contains("collapse")) {
         // Wait for the animation
         setTimeout(() => {
-            document.querySelector(".sign-button").classList.toggle("d-none");
-            document.querySelector(".side-menu-head").classList.toggle("d-none");
+            document.querySelector(".sign-button-box").classList.toggle("d-none");
+            // document.querySelector(".side-menu-head").classList.toggle("d-none");
             document.querySelector(".side-menu-body").classList.toggle("d-none");
         }, 150);
     } else {
-        side_menu.querySelector(".sign-button").classList.toggle("d-none");
-        side_menu.querySelector(".side-menu-head").classList.toggle("d-none");
+        side_menu.querySelector(".sign-button-box").classList.toggle("d-none");
+        // side_menu.querySelector(".side-menu-head").classList.toggle("d-none");
         side_menu.querySelector(".side-menu-body").classList.toggle("d-none");
     }
 })
+
+if (document.querySelector('input[type="date"].today-date') != null) {
+    let dateInputs = document.querySelectorAll('input[type="date"].today-date');
+    dateInputs.forEach(e => {
+        e.min = GetToday();
+    });
+}
 /* END EVENT LISTENERS */

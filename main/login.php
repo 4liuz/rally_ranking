@@ -2,7 +2,7 @@
     <div class="saturated h-100 d-flex justify-content-center align-items-center">
         <div class="login-div">
             <div class="login-title">
-                <img src="src/logo_c.png" />
+                <!-- <img src="src/logo_c.png" /> -->
                 <span>Rally<br>Ranking</span>
             </div>
             <div class="login-box">

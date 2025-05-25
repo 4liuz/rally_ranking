@@ -101,6 +101,18 @@
 .no-wrap {
     flex-wrap: nowrap;
 }
+
+/* WRAP */
+.gap-5{
+    gap: 0.5rem;
+}
+.row-gap-5{
+    row-gap: 0.5rem;
+}
+.column-gap-5{
+    column-gap: 0.5rem;
+}
+
 /* END FLEX SETTINGS */
 
 
@@ -109,7 +121,7 @@
 /* LANDSCAPE SCREEN */
 @media (orientation: landscape) {
     .login-bg-image {
-        background-image: url("../src/fabricar_ceramica_2.jpg");
+        /* background-image: url("../src/fabricar_ceramica_2.jpg"); */
         background-size: cover;
         background-position-x: center;
     }
@@ -117,7 +129,7 @@
 /* PORTRAIT SCREEN */
 @media (orientation: portrait) {
     .login-bg-image {
-        background-image: url("../src/fabricar_ceramica_1.jpg");
+        /* background-image: url("../src/fabricar_ceramica_1.jpg"); */
         background-size: cover;
         background-position-y: center;
     }
@@ -274,3 +286,44 @@
     min-width: 20vw;
 }
 /* END MIN WIDTH */
+
+.m-b-10{
+    margin-bottom: 1rem;
+}
+
+.w-1{
+    width: var(--w-1);
+}
+.w-2{
+    width: var(--w-2);
+}
+.w-3{
+    width: var(--w-3);
+}
+.w-4{
+    width: var(--w-4);
+}
+.w-5{
+    width: var(--w-5);
+}
+.w-6{
+    width: var(--w-6);
+}
+.w-7{
+    width: var(--w-7);
+}
+.w-8{
+    width: var(--w-8);
+}
+.w-9{
+    width: var(--w-9);
+}
+.w-10{
+    width: var(--w-10);
+}
+.w-11{
+    width: var(--w-11);
+}
+.w-12{
+    width: var(--w-12);
+}

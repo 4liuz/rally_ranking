@@ -8,11 +8,12 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cerámicart</title>
-    <link href="src/favicon4.ico" rel="icon" type="image/png" />
+    <title>Rally Ranking</title>
+    <!-- <link href="src/favicon4.ico" rel="icon" type="image/png" /> -->
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/palette-dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="functions/functions.js" defer></script>
 </head>
 <body>
