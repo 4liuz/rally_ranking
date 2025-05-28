@@ -3,9 +3,11 @@
     header("Content-Type: application/json");
     session_start();
 
+    $_POST['id_participante'] = null;
+    $_POST['baja'] = 0;
     $user_data = new user_data($_POST);
-    UpdateUser($user_data);
-    
+    CreateUser($user_data);
+
     $response = [
         "success" => true,
         "data" => [
@@ -15,13 +17,8 @@
             "apellidos" => $user_data->apellidos,
             "email" => $user_data->email,
             "password" => $user_data->password,
-            "baja" => $user_data->baja
         ]
     ];
-        
-    echo json_encode($response);
 
-    if ($_SESSION['rol'] == "Participante") {
-        $_SESSION['usuario'] = $user_data -> usuario;
-    }
+    echo json_encode($response);
 ?>

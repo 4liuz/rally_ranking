@@ -9,7 +9,7 @@ if(!isset($_SESSION['rol'])){
     </div>
     <div class="card-body">
         <div class="full-body-form">
-            <form action="controller/process_sign_in.php" method="post">
+            <form id="sign-in-form" method="post">
                 <!-- START IF SIGN IN FAILED -->
                 <div class="label-input-row-1">
                     <label for="usuario">Nombre de Usuario:</label>
@@ -33,8 +33,8 @@ if(!isset($_SESSION['rol'])){
                     <input id="apellidos" name="apellidos" type="text" />
                 </div>
                 <div class="label-input-row-1 align-items-center">
-                    <label for="passwd">Contraseña:</label>
-                    <input id="passwd" name="passwd" type="password" />
+                    <label for="password">Contraseña:</label>
+                    <input id="password" name="password" type="password" />
                     <!--
                     <button class="eye" onclick="">
                         <img id="eye" src="src/eye-ico.png" >
@@ -54,21 +54,6 @@ if(!isset($_SESSION['rol'])){
                 <?php
                     }
                 ?>
-                <!--
-                <div class="label-input-row-1">
-                    <label for="telefono">Teléfono:</label>
-                    <input id="telefono" name="telefono" type="text" />
-                </div>
-                <?php
-                    if($has_failed){
-                ?>
-                <div class="failed-form">
-                    <span>El teléfono debe contener 9 dígitos</span>
-                </div>
-                <?php
-                    }
-                    ?>
-                    -->
                 <div class="d-flex justify-content-end">
                     <button type="submit">Crear</button>
                 </div>
@@ -76,6 +61,7 @@ if(!isset($_SESSION['rol'])){
         </div>
     </div>
 </div>
+<script src="functions/create_user.js" defer></script>
 <?php
 } else {
     header("Location:index.php?id=".GetScreenIndex("home"));

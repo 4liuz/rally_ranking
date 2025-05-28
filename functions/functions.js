@@ -91,5 +91,8 @@ function UpdateProfile(usuario, nombre, apellidos, email, password, id_participa
     document.querySelector("#email").value = email;
     document.querySelector("#password").value = password;
     document.querySelector("#id_participante").value = id_participante;
+
+    document.querySelector(".side-menu-head .user-name").innerHTML = usuario;
 }
+
 /* END EVENT LISTENERS */

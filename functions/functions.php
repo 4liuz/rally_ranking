@@ -136,14 +136,24 @@
         $mydb = new mydb($sql["db"]);
 
         $mydb ->querySetter(
-            "ISERT INTO usuarios
-            VALUES
-            ('usuario', '".$user_data->usuario."'),
-            ('password', '".$user_data->password."'),
-            ('nombre', '".$user_data->nombre."'),
-            ('apellidos', '".$user_data->apellidos."'),
-            ('email', '".$user_data->email."'),
-            ('fecha_registro', '".date("Y/m/d")."')");
+            "INSERT INTO participantes
+            (`usuario`,
+            `password`,
+            `nombre`,
+            `apellidos`,
+            `email`,
+            `fecha_creacion`,
+            `ultima_actualizacion`)
+
+            VALUES 
+            ('".$user_data->usuario."', '"
+            .$user_data->password."', '"
+            .$user_data->nombre."', '"
+            .$user_data->apellidos."', '"
+            .$user_data->email."', '"
+            .date("Y/m/d")."', '"
+            .date("Y/m/d H:i:s")."')");
+
         $mydb -> fastQueryBool();
     }
 

@@ -25,7 +25,7 @@ if (isset($_SESSION['rol'])) {
     </div>
     <div class="card-body">
         <div class="full-body-form">
-            <form action="controller/process_profile.php" method="post">
+            <form id="profile-form" method="post">
                 <!-- START IF SIGN IN FAILED -->
                 <div class="label-input-row-1">
                     <label for="usuario">Nombre de Usuario:</label>
@@ -70,30 +70,13 @@ if (isset($_SESSION['rol'])) {
                 <?php
                     }
                 ?>
-                <!--
-                <div class="label-input-row-1">
-                    <label for="telefono">Teléfono:</label>
-                    <input id="telefono" name="telefono" type="text" value="<?php //echo $user_data->telefono;?>" />
-                </div>
-                <?php
-                    if($has_failed){
-                ?>
-                <div class="failed-form">
-                    <span>El teléfono debe contener 9 dígitos</span>
-                </div>
-                <?php
-                    }
-                ?>
-                <div class="d-flex justify-content-end">
-                    <label for="ofertante">Quiero ser Ofertante:</label>
-                    <input id="ofertante" name="ofertante" type="checkbox"<?php //echo CheckOferer($user_data->usuario)?" checked":"";?> />
-                </div>
-                -->
                 <div class="d-flex justify-content-end column-gap-5">
                     <input hidden id="id_participante" name="id_participante" type="text" value="<?php echo $user_data->id_participante;?>" /> 
                     <input hidden id="baja" name="baja" type="text" value="<?php echo $user_data->baja;?>" /> 
                     <button class="delete-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Borrar Cuenta</button>
-                    <?php if ($_SESSION['rol'] == "Administrador"){ ?><button class="unsuscribe-button" <?php //echo("onclick=\"location.href='controller/unsuscribe_user.php'\"");?>>Baja</button><?php } ?>
+                    <?php if ($_SESSION['rol'] == "Administrador"){ ?>
+                    <button class="unsuscribe-button" <?php //echo("onclick=\"location.href='controller/unsuscribe_user.php'\"");?>>Baja</button>
+                    <?php } ?>
                     <button type="submit">Cambiar</button>
                 </div>
             </form>
@@ -106,3 +89,4 @@ if (isset($_SESSION['rol'])) {
     header("Location:index.php?id=".GetScreenIndex("home"));
 }
 ?>
+<script src="functions/profile_updater.js" defer></script>

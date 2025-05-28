@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#profile-form");
+  const form = document.querySelector("#sign-in-form");
 
   form.addEventListener("submit", async e => {
     e.preventDefault();
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let formData = new FormData(form);
 
     try {
-      const response = await fetch("controller/process_profile.php", {
+      const response = await fetch("controller/process_sign_in.php", {
         method: "POST",
         body: formData,
       });
@@ -19,12 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (result.success) {
-        // Actualizar los campos del formulario con la info recibida
-        UpdateProfile(result.data.usuario, result.data.nombre, result.data.apellidos, result.data.email, result.data.password, result.data.id_participante)
-
-        alert("¡Perfil actualizado!");
+        alert("¡Tu usuario se ha creado correctamente!");
+        location.href = 'index.php?id=4';
       } else {
-        alert("Error al actualizar el perfil.");
+        alert("Error en la creación de tu usuario.");
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);
