@@ -1,9 +1,6 @@
 <div class="card">
-    <?php
-        echo "¡Bienvenido";
-        if(isset($_SESSION['usuario'])){
-            echo " ".$_SESSION['usuario'];
-        }
-        echo "!";
-    ?>
+    <div class="card-head">
+        <span>Rally Ranking</span>
+    </div>
+    <div class="card-body">Lorem ipsum</div>
 </div>

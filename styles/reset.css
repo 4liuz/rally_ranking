@@ -91,23 +91,35 @@ button:hover, button:focus, .button:hover, .button:focus {
 
 button{
     /* margin-left: 0.5rem; */
-    color: #444;
     background-color: #AAA;
 }
 
-button:active{
+button, button i{
+    color: #444;
+}
+
+button:active,
+button:active i{
     color: #222;
+}
+
+button:active{
     background-color: #777;
 }
 
 button[type="submit"], .sign-button {
     background-color: var(--color-6);
-    color: #FFF;
 }
 
 button[type="submit"]:active, .sign-button:active {
     background-color: var(--color-8);
-    color: #FFF;
+}
+
+button[type="submit"],
+button[type="submit"]:active,
+.sign-button,
+.sign-button:active{
+    color: #FFF
 }
 
 ul, ol {
@@ -118,10 +130,10 @@ a{
     text-decoration: none;
 }
 
-i {
-    margin-left: 0.5rem;
-}
-
 label{
     text-align: right ;
+}
+
+i {
+    font-size: 1.5rem !important;
 }

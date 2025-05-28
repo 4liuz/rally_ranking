@@ -68,6 +68,23 @@
         }
 
         /**
+         * Sends actual query property to the DDBB to get a response.
+         * @author arm
+         * @date 22/10/2024
+         */
+        public function fastResponse() {
+            try {
+                // echo $this -> query."<br>";
+                $this -> result =  $this -> mysqli -> query($this -> query);
+                return $this -> result;
+            } catch (mysqli_error) {
+                echo "<script defer>alert(\"Error al interactuar con la base de datos. Datos:\n\n";
+                echo $this -> testVars();
+                echo "\");</script>";
+            }
+        }
+
+        /**
          * Sends actual query property to the DDBB to get an object format response.
          * @author arm
          * @date 22/10/2024

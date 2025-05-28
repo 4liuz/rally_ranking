@@ -17,6 +17,7 @@ $screens = array (
     "11"  => "manage_requests",   // "A": pending upload requests
     "12"  => "manage_profiles",   // "A": change participants data
     "13"  => "post_approval",     // "A": request approval page
+    "14"  => "ranking",
     "200" => "header",
     "202" => "menu",
     "203" => "footer"
@@ -78,7 +79,7 @@ function Launch($screen, $root = "main/", $ext = ".php") {
     if (in_array($screen, $screens, true)) {
         // Screen name suplied
         require_once($root.$screen.$ext);
-    } elseif(array_key_exists($screen, $screens)) {
+    } elseif(array_key_exists($screen, $screens) && $screen < 199) {
         // Screen id suplied
         require_once($root.$screens[$screen].$ext);
     } else {

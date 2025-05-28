@@ -83,4 +83,13 @@ if (document.querySelector('input[type="date"].today-date') != null) {
         e.min = GetToday();
     });
 }
+
+function UpdateProfile(usuario, nombre, apellidos, email, password, id_participante) {
+    document.querySelector("#usuario").value = usuario;
+    document.querySelector("#nombre").value = nombre;
+    document.querySelector("#apellidos").value = apellidos;
+    document.querySelector("#email").value = email;
+    document.querySelector("#password").value = password;
+    document.querySelector("#id_participante").value = id_participante;
+}
 /* END EVENT LISTENERS */

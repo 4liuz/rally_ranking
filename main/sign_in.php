@@ -1,4 +1,5 @@
 <?php
+if(!isset($_SESSION['rol'])){
     $has_failed = isset($_SESSION['failed_sign_in'])?1:0;
 ?>
 <div class="card">
@@ -75,3 +76,8 @@
         </div>
     </div>
 </div>
+<?php
+} else {
+    header("Location:index.php?id=".GetScreenIndex("home"));
+}
+?>

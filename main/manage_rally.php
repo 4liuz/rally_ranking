@@ -1,3 +1,6 @@
+<?php
+if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
+?>
 <div class="card">
     <div class="card-head">
         <span>Configuración de Rally Ranking</span>
@@ -37,3 +40,8 @@
         </div>
     </div>
 </div>
+<?php
+} else {
+header("Location:index.php?id=".GetScreenIndex("home"));
+}
+?>

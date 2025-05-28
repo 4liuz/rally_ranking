@@ -113,12 +113,22 @@ body {
 }
 
 .card-head span {
+    display: block;
     font-size: 3rem;
     font-weight: 600;
 }
 
 .card-head p {
     margin: 1rem 0 2rem 0;
+}
+
+button.navigate-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem 0.2rem 1rem;
+    font-size: 2rem;
 }
 
 /** START FORMS **/
@@ -227,9 +237,8 @@ body {
         opacity 0.15s ease-in-out;
 }
 
-
-
 .profile-img {
+    aspect-ratio: 1 / 1;
     border-radius: 100%;
 }
 
@@ -256,7 +265,7 @@ body {
     width: 4rem;
 }
 
-.side-menu.collapse .side-menu-body, .side-menu.collapse .sign-button{
+.side-menu.collapse .side-menu-body, .side-menu.collapse .sign-button, .side-menu.collapse .side-menu-head{
     opacity: 0%;
 }
 
@@ -324,8 +333,7 @@ body {
 
 /** START POST **/
 .vote-box {
-    width: 90%;
-    margin: 1rem auto 0 auto;
+    margin-top: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -348,21 +356,31 @@ body {
 }
 
 .approved{
-    background-color: #3d3;
+    background-color: #00954a;
     box-shadow: 0 0 0.2rem 0 #9f9;
     color: #fff;
     text-shadow: 0.05rem 0.05rem 0 #000;
 }
 .rejected{
-    background-color: #d33;
+    background-color: #cc2449;
     box-shadow: 0 0 0.2rem 0 #f99;
     color: #fff;
     text-shadow: 0.05rem 0.05rem 0 #000;
 }
 .pending{
-    background-color: #dd3;
+    background-color: #ccb449;
     box-shadow: 0 0 0.2rem 0 #ff9;
     color: #fff;
     text-shadow: 0.05rem 0.05rem 0 #000;
 }
 /* END STATUS */
+
+/* START ACTION-BUTTONS BOX */
+.action-button{
+    padding: 0.2rem;
+}
+
+.moon{
+    padding: 0.2rem 0.3rem;
+}
+/* END ACTION-BUTTONS BOX */

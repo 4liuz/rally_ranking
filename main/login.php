@@ -1,8 +1,11 @@
+<?php
+if (!isset($_SESSION['rol'])) {
+?>
 <div class="main-wrap login-bg-image">
     <div class="saturated h-100 d-flex justify-content-center align-items-center">
         <div class="login-div">
             <div class="login-title">
-                <!-- <img src="src/logo_c.png" /> -->
+                <!-- <img src="src/logo.png" /> -->
                 <span>Rally<br>Ranking</span>
             </div>
             <div class="login-box">
@@ -12,8 +15,8 @@
                         <input id="usuario" name="usuario" type="text" />
                     </div>
                     <div class="label-input-row-1 align-items-center">
-                        <label for="passwd">Contraseña:</label>
-                        <input id="passwd" name="passwd" type="password" />
+                        <label for="password">Contraseña:</label>
+                        <input id="password" name="password" type="password" />
                     </div>
 
 
@@ -59,4 +62,7 @@
 </div>
 <?php
     unset($_SESSION['failed_login']);
+} else {
+    header("Location:index.php?id=".GetScreenIndex("home"));
+}
 ?>
