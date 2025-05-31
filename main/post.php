@@ -12,6 +12,7 @@ if(!isset($_SESSION['rol'])){
 
                 <button
                 class="navigate-back"
+                title="Volver"
                 <?php echo("onclick=\"location.href='index.php?id=".GetScreenIndex("gallery")."'\"");?>
                 >
                 ←

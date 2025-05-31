@@ -8,7 +8,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
     </div>
     <div class="card-body">
         <?php
-        $result = GetTableData();
+        $result = GetProfileManagerData();
         while($user = $result -> fetch_object()) {
         ?>
         <div class="d-flex justify-content-between align-items-center m-b-10">
@@ -17,17 +17,17 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
                 <?php
                 if($user -> baja) {
                     ?>
-                <button class="action-button" onclick=""><i class="fa">&#xf185;<!-- Sun --></i></button>
+                <button class="action-button" title="Dar de alta" onclick=""><i class="fa">&#xf185;<!-- Sun --></i></button>
                 <?php
                 } else {
                     ?>
-                <button class="action-button moon" onclick=""><i class="fa">&#xf186;<!-- Moon --></i></button>
+                <button class="action-button moon" title="Dar de baja" onclick=""><i class="fa">&#xf186;<!-- Moon --></i></button>
                 <?php
                 }
                 ?>
                 <form action="index.php?id=<?php echo GetScreenIndex("profile"); ?>" method="post" class="d-inline">
-                    <input hidden type="text" id="id_participante_<?php echo $user -> id_participante; ?>" name="id_participante" value="<?php echo $user->id_participante; ?>" />
-                    <button class="action-button">
+                    <input hidden type="text" id="id<?php echo $user -> id; ?>" name="id" value="<?php echo $user->id; ?>" />
+                    <button class="action-button" title="Editar">
                         <i class="fa">&#xf040;<!-- Pencil --></i>
                     </button>
                 </form> 

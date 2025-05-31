@@ -3,7 +3,7 @@
     session_start();
 
     $user = GetUser($_SESSION['usuario']);
-    DeleteUser($user->id_usuario);
+    DeleteUser($user->id);
     
     session_unset();
 

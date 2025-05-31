@@ -55,6 +55,7 @@ if(!isset($_SESSION['rol'])){
                     }
                 ?>
                 <div class="d-flex justify-content-end">
+                    <input hidden id="ultimo_usuario" name="ultimo_usuario" type="text" value="<?php echo $_SESSION['usuario'];?>" /> 
                     <button type="submit">Crear</button>
                 </div>
             </form>

@@ -5,7 +5,7 @@ if (isset($_SESSION['rol'])) {
     if ($_SESSION['rol'] == "Participante"){
         $user_data = GetUser($_SESSION['usuario']);
     } elseif ($_SESSION['rol'] == "Administrador") {
-        $user_data = GetUser(GetUserName($_POST['id_participante']));
+        $user_data = GetUser(GetUserName($_POST['id']));
     }
     // $user_data = new user_data();
 ?>
@@ -18,12 +18,25 @@ if (isset($_SESSION['rol'])) {
                 if ($_SESSION['rol'] == 'Participante') {
                     echo "Mi Perfil";
                 } elseif ($_SESSION['rol'] == 'Administrador') {
-                    echo "Perfil de " . $user_data -> nombre . $user_data -> apellidos;
+                    echo "Perfil de " . $user_data -> nombre . "&nbsp;" . $user_data -> apellidos;
                 }
             ?>
         </span>
     </div>
     <div class="card-body">
+        <?php
+            if($_SESSION['rol'] == "Administrador") {
+        ?>
+        <button
+        class="navigate-back"
+        title="Volver"
+        <?php echo("onclick=\"location.href='index.php?id=".GetScreenIndex("manage_profiles")."'\"");?>
+        >
+        ←
+        </button>
+        <?php
+            }
+        ?>
         <div class="full-body-form">
             <form id="profile-form" method="post">
                 <!-- START IF SIGN IN FAILED -->
@@ -71,22 +84,24 @@ if (isset($_SESSION['rol'])) {
                     }
                 ?>
                 <div class="d-flex justify-content-end column-gap-5">
-                    <input hidden id="id_participante" name="id_participante" type="text" value="<?php echo $user_data->id_participante;?>" /> 
+                    <input hidden id="id" name="id" type="text" value="<?php echo $user_data->id;?>" /> 
                     <input hidden id="baja" name="baja" type="text" value="<?php echo $user_data->baja;?>" /> 
+                    <input hidden id="ultimo_usuario" name="ultimo_usuario" type="text" value="<?php echo $_SESSION['usuario'];?>" /> 
                     <button class="delete-button" <?php //echo("onclick=\"location.href='controller/delete_user.php'\"");?>>Borrar Cuenta</button>
                     <?php if ($_SESSION['rol'] == "Administrador"){ ?>
                     <button class="unsuscribe-button" <?php //echo("onclick=\"location.href='controller/unsuscribe_user.php'\"");?>>Baja</button>
                     <?php } ?>
-                    <button type="submit">Cambiar</button>
+                    <button type="submit">Guardar cambios</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script src="functions/refresh.js" defer></script>
+<script src="functions/profile_updater.js" defer></script>
 <?php
     unset($user_data);
 } else {
     header("Location:index.php?id=".GetScreenIndex("home"));
 }
 ?>
-<script src="functions/profile_updater.js" defer></script>

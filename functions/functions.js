@@ -67,12 +67,12 @@ document.querySelector(".burguer-icon").addEventListener("click", () => {
         // Wait for the animation
         setTimeout(() => {
             document.querySelector(".sign-button-box").classList.toggle("d-none");
-            // document.querySelector(".side-menu-head").classList.toggle("d-none");
+            document.querySelector(".side-menu-head").classList.toggle("d-none");
             document.querySelector(".side-menu-body").classList.toggle("d-none");
         }, 150);
     } else {
         side_menu.querySelector(".sign-button-box").classList.toggle("d-none");
-        // side_menu.querySelector(".side-menu-head").classList.toggle("d-none");
+        side_menu.querySelector(".side-menu-head").classList.toggle("d-none");
         side_menu.querySelector(".side-menu-body").classList.toggle("d-none");
     }
 })
@@ -84,15 +84,46 @@ if (document.querySelector('input[type="date"].today-date') != null) {
     });
 }
 
-function UpdateProfile(usuario, nombre, apellidos, email, password, id_participante) {
-    document.querySelector("#usuario").value = usuario;
-    document.querySelector("#nombre").value = nombre;
-    document.querySelector("#apellidos").value = apellidos;
-    document.querySelector("#email").value = email;
-    document.querySelector("#password").value = password;
-    document.querySelector("#id_participante").value = id_participante;
+async function UpdateProfile
+({
+    data = {}, // Sólo para refresh.js
+    usuario = data.usuario,
+    nombre = data.nombre,
+    apellidos = data.apellidos,
+    email = data.email,
+    password = data.password,
+    id = data.id
+}) {
+    let rol =  await CheckRol();
 
-    document.querySelector(".side-menu-head .user-name").innerHTML = usuario;
+    document.querySelector("#usuario").value = data.usuario ?? usuario;
+    document.querySelector("#nombre").value = data.nombre ?? nombre;
+    document.querySelector("#apellidos").value = data.apellidos ?? apellidos;
+    document.querySelector("#email").value = data.email ?? email;
+    document.querySelector("#password").value = data.password ?? password;
+    document.querySelector("#id").value = data.id ?? id;
+    
+    if (rol == "Participante") {
+        document.querySelector(".side-menu-head .user-name").innerHTML = usuario;
+    }
+}
+
+async function CheckRol() {
+    try {
+        const response = await fetch("controller/check_rol.php");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        return result.rol;
+
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        alert("Ocurrió un error al enviar el formulario.");
+    }
 }
 
 /* END EVENT LISTENERS */

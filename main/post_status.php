@@ -10,6 +10,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Participante') {
             <div class="">
                 <button
                 class="navigate-back"
+                title="Volver"
                 <?php echo("onclick=\"location.href='index.php?id=".GetScreenIndex("my_gallery")."'\"");?>
                 >
                 ←

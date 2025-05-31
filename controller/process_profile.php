@@ -9,13 +9,14 @@
     $response = [
         "success" => true,
         "data" => [
-            "id_participante" => $user_data->id_participante,
+            "id" => $user_data->id,
             "usuario" => $user_data->usuario,
             "nombre" => $user_data->nombre,
             "apellidos" => $user_data->apellidos,
             "email" => $user_data->email,
             "password" => $user_data->password,
-            "baja" => $user_data->baja
+            "baja" => $user_data->baja,
+            "ultimo_usuario" => $_SESSION['usuario']
         ]
     ];
         

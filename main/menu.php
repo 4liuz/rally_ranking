@@ -27,7 +27,7 @@
         ?>
         <div class="side-menu-head">
             <div class="side-menu-img">
-                <img src="src/profile_img_<?php echo ($_SESSION['rol']=='Participante')?'part.png':'admin.gif';?>" class="profile-img" />
+                <img src="src/profile_img_<?php echo ($_SESSION['rol']=='Participante')?'part':'admin';?>.gif" class="profile-img" />
             </div>
             <span class="user-name"><?php echo($_SESSION['usuario']??"");?></span>
             <span class="user-rol"><?php echo($_SESSION['rol']??"");?></span>

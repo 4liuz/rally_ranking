@@ -10,6 +10,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
             <div class="">
                 <button
                 class="navigate-back"
+                title="Volver"
                 <?php echo("onclick=\"location.href='index.php?id=".GetScreenIndex("manage_requests")."'\"");?>
                 >
                 ←

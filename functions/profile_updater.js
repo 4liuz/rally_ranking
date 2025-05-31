@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#profile-form");
 
+  RefreshInit(
+    UpdateProfile,
+    "participantes",
+    document.querySelector("input#id").value,
+    document.querySelector("input#ultimo_usuario").value
+  );
+
   form.addEventListener("submit", async e => {
     e.preventDefault();
 
@@ -20,7 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (result.success) {
         // Actualizar los campos del formulario con la info recibida
-        UpdateProfile(result.data.usuario, result.data.nombre, result.data.apellidos, result.data.email, result.data.password, result.data.id_participante)
+        UpdateProfile({
+          usuario : result.data.usuario,
+          nombre : result.data.nombre,
+          apellidos : result.data.apellidos,
+          email : result.data.email,
+          password : result.data.password,
+          id : result.data.id
+        })
 
         alert("¡Perfil actualizado!");
       } else {
