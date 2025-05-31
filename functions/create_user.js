@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async e => {
     e.preventDefault();
 
+    document.querySelector('#ultimo_usuario').value = document.querySelector('#usuario').value
+
     let formData = new FormData(form);
 
     try {

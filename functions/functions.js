@@ -67,12 +67,16 @@ document.querySelector(".burguer-icon").addEventListener("click", () => {
         // Wait for the animation
         setTimeout(() => {
             document.querySelector(".sign-button-box").classList.toggle("d-none");
-            document.querySelector(".side-menu-head").classList.toggle("d-none");
+            if (head = document.querySelector(".side-menu-head")) {
+                head.classList.toggle("d-none");
+            }
             document.querySelector(".side-menu-body").classList.toggle("d-none");
         }, 150);
     } else {
         side_menu.querySelector(".sign-button-box").classList.toggle("d-none");
-        side_menu.querySelector(".side-menu-head").classList.toggle("d-none");
+        if (head = document.querySelector(".side-menu-head")) {
+            head.classList.toggle("d-none");
+        }
         side_menu.querySelector(".side-menu-body").classList.toggle("d-none");
     }
 })
