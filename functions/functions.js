@@ -115,19 +115,76 @@ async function UpdateProfile
 async function CheckRol() {
     try {
         const response = await fetch("controller/check_rol.php");
-
+        
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
         }
-
+        
         const result = await response.json();
-
+        
         return result.rol;
-
+        
     } catch (error) {
         console.error("Error en la solicitud:", error);
         alert("Ocurrió un error al enviar el formulario.");
     }
+}
+
+function ProcessForm(form, f) {
+  if (!form || typeof f !== 'function') {
+    console.error("Parámetros inválidos en ProcessForm.");
+    return false;
+  }
+
+  const inputElements = form.querySelectorAll("input, textarea, select");
+  const isValid = f(Array.from(inputElements));
+  return isValid;
+}
+
+function ValidateUserForm(inputs) {
+  const regexMap = {
+    usuario: /^[a-zA-Z0-9. ]+$/,
+    nombre: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑçÇàèìòùÀÈÌÒÙ\s]+$/,
+    apellidos: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑçÇàèìòùÀÈÌÒÙ\s]+$/,
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    password: /^[\s\S]*$/
+  };
+
+  let allValid = true;
+
+  inputs.forEach(input => {
+    const name = input.name;
+    const regex = regexMap[name];
+    const errorBox = document.querySelector(`#error-${name}`);
+
+    if (!regex) return; // ignorar inputs no previstos
+
+    const validate = () => {
+      const isValid = regex.test(input.value);
+      if (!isValid) {
+        errorBox.classList.remove("d-none");
+        allValid = false;
+      } else {
+        errorBox.classList.add("d-none");
+      }
+    };
+
+    // Primera vez al perder el foco
+    input.addEventListener("blur", () => {
+      validate();
+
+      // Solo se agrega una vez el listener de input
+      if (!input.dataset.listenerAttached) {
+        input.addEventListener("input", validate);
+        input.dataset.listenerAttached = "true";
+      }
+    });
+
+    // Validación inmediata por si se lanza desde el botón directamente
+    validate();
+  });
+
+  return allValid;
 }
 
 /* END EVENT LISTENERS */

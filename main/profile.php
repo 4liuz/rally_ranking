@@ -44,31 +44,49 @@ if (isset($_SESSION['rol'])) {
                     <label for="usuario">Nombre de Usuario:</label>
                     <input id="usuario" name="usuario" type="text" value="<?php echo $user_data->usuario;?>" />
                 </div>
-                <?php
-                    if($has_failed){
-                ?>
-                <div class="failed-form">
-                    <span>El nombre de usuario ya existe</span>
+                <div id="user-exists" class="failed-form d-none">
+                    <span>El nombre de usuario ya existe, prueba con otro</span>
                 </div>
-                <?php
-                    }
-                ?>
+                <div id="error-usuario" class="failed-form d-none">
+                    <span>Sólo letras alfabéticas, espacios, números y/o puntos. Ejemplo: ale.jandr2</span>
+                </div>
                 <div class="label-input-row-1">
                     <label for="nombre">Nombre:</label>
                     <input id="nombre" name="nombre" type="text" value="<?php echo $user_data->nombre;?>" />
+                </div>
+                <div id="error-nombre" class="failed-form d-none">
+                    <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: José Miguel, François...</span>
                 </div>
                 <div class="label-input-row-1">
                     <label for="apellidos">Apellidos:</label>
                     <input id="apellidos" name="apellidos" type="text" value="<?php echo $user_data->apellidos;?>" />
                 </div>
+                <div id="error-apellidos" class="failed-form d-none">
+                    <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: Núñez Burgos, Lévêque Ghesquière...</span>
+                </div>
                 <div class="label-input-row-1 align-items-center">
                     <label for="password">Contraseña:</label>
                     <input id="password" name="password" type="text" value="<?php echo $user_data->password;?>" />
-                    <!--
-                    <button class="eye" onclick="">
-                        <img id="eye" src="src/eye-ico.png" >
+                    <?php
+                        // Asignar a variable para evitar error alert del editor
+                        $false = false;
+                        // No imprimir en la página para evitar posibles errores
+                        if($false){
+                    ?>
+                    <!-- Botones Ocultar / Mostrar contraseña -->
+                    <button title="Ocultar" id="eye" class="action-button d-none" onclick="">
+                        <i class="fa">&#xf06e;</i>
                     </button>
-                    -->
+                    <button title="Mostrar" id="eye-slash" class="action-button" onclick="false">
+                        <i class="fa">&#xf070;</i>
+                    </button>
+                    <?php
+                        }
+                        unset($false);
+                    ?>
+                </div>
+                <div id="error-apellidos" class="failed-form d-none">
+                    <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: Núñez Burgos, Lévêque Ghesquière...</span>
                 </div>
                 <div class="label-input-row-1">
                     <label for="email">Email:</label>
