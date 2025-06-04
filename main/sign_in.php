@@ -19,8 +19,8 @@ if(!isset($_SESSION['rol'])){
                     <span>El nombre de usuario ya existe, prueba con otro</span>
                 </div>
                 <div id="error-usuario" class="failed-form d-none">
-                    <span></span>
-                    <span>Sólo letras alfabéticas, espacios, números y/o puntos. Ejemplo: ale.jandr2</span>
+                    <span class="min-5-rem"></span>
+                    <span>Sólo letras alfabéticas, espacios, números y/o puntos.<br>Ejemplo: ale.jandr2</span>
                 </div>
 
                 <div class="label-input-row-1">
@@ -28,7 +28,7 @@ if(!isset($_SESSION['rol'])){
                     <input id="nombre" name="nombre" type="text" />
                 </div>
                 <div id="error-nombre" class="failed-form d-none">
-                    <span></span>
+                    <span class="min-5-rem"></span>
                     <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: José Miguel, François...</span>
                 </div>
 
@@ -64,7 +64,7 @@ if(!isset($_SESSION['rol'])){
                     ?>
                 </div>
                 <div id="error-password" class="failed-form d-none">
-                    <span></span>
+                    <span class="min-5-rem"></span>
                     <span>Al menos 6 caracteres, incluyendo un carácter especial, una mayúscula y un número<br>Ejemplo: Rally1!</span>
                 </div>
 
@@ -73,7 +73,7 @@ if(!isset($_SESSION['rol'])){
                     <input id="email" name="email" type="text" />
                 </div>
                 <div id="error-email" class="failed-form d-none">
-                    <span></span>
+                    <span class="min-5-rem"></span>
                     <span>El correo debe tener el formato "ejemplo@direccion.com"</span>
                 </div>
 

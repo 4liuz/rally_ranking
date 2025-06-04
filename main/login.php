@@ -5,7 +5,7 @@ if (!isset($_SESSION['rol'])) {
     <div class="saturated h-100 d-flex justify-content-center align-items-center">
         <div class="login-div">
             <div class="login-title">
-                <!-- <img src="src/logo.png" /> -->
+                <img src="src/logo.png" />
                 <span>Rally<br>Ranking</span>
             </div>
             <div class="login-box">
@@ -14,7 +14,7 @@ if (!isset($_SESSION['rol'])) {
                         <label for="usuario">Usuario:</label>
                         <input id="usuario" name="usuario" type="text" />
                     </div>
-                    <div class="label-input-row-1 align-items-center">
+                    <div class="label-input-row-1">
                         <label for="password">Contraseña:</label>
                         <input id="password" name="password" type="password" />
                     </div>
@@ -27,6 +27,7 @@ if (!isset($_SESSION['rol'])) {
                     ?>
 
                     <div class="failed-form">
+                        <span class="min-5-rem"></span>
                         <span>Usuario y/o contraseña incorrectos</span>
                     </div>
 

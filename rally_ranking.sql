@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2025 a las 17:55:19
+-- Tiempo de generación: 04-06-2025 a las 18:22:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -80,13 +80,14 @@ CREATE TABLE `participantes` (
 --
 
 INSERT INTO `participantes` (`id`, `usuario`, `password`, `nombre`, `apellidos`, `email`, `fecha_creacion`, `baja`, `ultima_actualizacion`, `ultimo_usuario`) VALUES
-(1, 'aliuz', 'aliuz', 'Alejandro', 'Ruiz Martín', 'aliuz@gmail.com', '2025-05-27', 0, '2025-06-01 17:30:17', 'aliuz'),
+(1, 'aliuz', 'Aliuz.1', 'Alejandro ', 'Ruiz Martín', 'aliuz@gmail.com', '2025-05-27', 0, '2025-06-04 02:50:30', 'aliuz'),
 (2, 'dukati', 'dukati', 'Sergio', 'Morales Trujillo', 'sergio@gmail.com', '2025-05-27', 0, '2025-05-28 18:26:56', NULL),
 (3, 'esthertru', 'esthertru', 'Esther', 'Núñez Burgos', 'esther@gmail.com', '2025-05-27', 0, '2025-05-28 20:34:10', NULL),
 (4, 'martin', 'martin', 'Martín', 'Gómez Tovaruela', 'martin@gmail.com', '2025-05-28', 1, '2025-05-28 20:32:49', NULL),
 (5, 'orc', 'orc', 'Orc', 'Bad Rlybad', 'orc@gmail.com', '2025-05-28', 0, '2025-05-28 21:30:30', NULL),
 (6, 'goblin', 'goblin', 'Goblin', 'Duende Verde', 'goblin@gmail.com', '2025-05-28', 0, '2025-05-29 18:15:19', NULL),
-(7, 'Alquimia', 'Alquimia', 'Alquimia', 'Pérez Rayuela', 'alquimia@gmail.com', '2025-05-29', 0, '2025-05-29 18:18:17', NULL);
+(7, 'Alquimia', 'Alquimia', 'Alquimia', 'Pérez Rayuela', 'alquimia@gmail.com', '2025-05-29', 0, '2025-05-29 18:18:17', NULL),
+(8, 'parras', 'Parras.1', 'Antonio José', 'Parras Flores', 'parras@gmail.com', '2025-06-04', 0, '2025-06-04 03:21:51', 'parras');
 
 -- --------------------------------------------------------
 
@@ -164,7 +165,7 @@ ALTER TABLE `fotos`
 -- AUTO_INCREMENT de la tabla `participantes`
 --
 ALTER TABLE `participantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `rally`

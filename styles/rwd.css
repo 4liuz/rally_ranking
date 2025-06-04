@@ -198,11 +198,21 @@
     .label-input-row-1 label, .failed-form span{
         width: 100%;
         text-align: left;
+        justify-content: start;
         margin-bottom: 0.25rem;
     }
     .label-input-row-1 input{
         width: 100%;
     }
+    .side-menu {
+        display: none;
+    }
+    .card{
+        margin: 0;
+        padding: 2rem 2vw;
+        border-radius: 0;
+    }
+    /* END LAYOUT */
     /* START LOGIN */
     .login-div {
         width: 22rem;

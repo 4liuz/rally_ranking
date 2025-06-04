@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rally Ranking</title>
-    <!-- <link href="src/favicon4.ico" rel="icon" type="image/png" /> -->
+    <link href="src/logo.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/palette-dark.css">
