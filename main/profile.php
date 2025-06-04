@@ -37,34 +37,41 @@ if (isset($_SESSION['rol'])) {
         <?php
             }
         ?>
-        <div class="full-body-form">
+        <div class="full-body-form max-40-rem">
             <form id="profile-form" method="post">
-                <!-- START IF SIGN IN FAILED -->
+
                 <div class="label-input-row-1">
                     <label for="usuario">Nombre de Usuario:</label>
                     <input id="usuario" name="usuario" type="text" value="<?php echo $user_data->usuario;?>" />
                 </div>
                 <div id="user-exists" class="failed-form d-none">
+                    <span></span>
                     <span>El nombre de usuario ya existe, prueba con otro</span>
                 </div>
                 <div id="error-usuario" class="failed-form d-none">
+                    <span></span>
                     <span>Sólo letras alfabéticas, espacios, números y/o puntos. Ejemplo: ale.jandr2</span>
                 </div>
+
                 <div class="label-input-row-1">
                     <label for="nombre">Nombre:</label>
                     <input id="nombre" name="nombre" type="text" value="<?php echo $user_data->nombre;?>" />
                 </div>
                 <div id="error-nombre" class="failed-form d-none">
+                    <span></span>
                     <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: José Miguel, François...</span>
                 </div>
+
                 <div class="label-input-row-1">
                     <label for="apellidos">Apellidos:</label>
                     <input id="apellidos" name="apellidos" type="text" value="<?php echo $user_data->apellidos;?>" />
                 </div>
                 <div id="error-apellidos" class="failed-form d-none">
-                    <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: Núñez Burgos, Lévêque Ghesquière...</span>
+                    <span class=" min-5-rem"></span>
+                    <span class="min-10-rem">Sólo letras alfabéticas, letras con carácter especial y/o espacios.<br>Ejemplos: Núñez Burgos, Lévêque Ghesquière...</span>
                 </div>
-                <div class="label-input-row-1 align-items-center">
+
+                <div class="label-input-row-1">
                     <label for="password">Contraseña:</label>
                     <input id="password" name="password" type="text" value="<?php echo $user_data->password;?>" />
                     <?php
@@ -85,22 +92,20 @@ if (isset($_SESSION['rol'])) {
                         unset($false);
                     ?>
                 </div>
-                <div id="error-apellidos" class="failed-form d-none">
-                    <span>Sólo letras alfabéticas, letras con carácter especial y/o espacios. Ejemplos: Núñez Burgos, Lévêque Ghesquière...</span>
+                <div id="error-password" class="failed-form d-none">
+                    <span></span>
+                    <span>Al menos 6 caracteres, incluyendo un carácter especial, una mayúscula y un número<br>Ejemplo: Rally1!</span>
                 </div>
+
                 <div class="label-input-row-1">
                     <label for="email">Email:</label>
                     <input id="email" name="email" type="text" value="<?php echo $user_data->email;?>" />
                 </div>
-                <?php
-                    if($has_failed){
-                ?>
-                <div class="failed-form">
+                <div id="error-email" class="failed-form d-none">
+                    <span></span>
                     <span>El correo debe tener el formato "ejemplo@direccion.com"</span>
                 </div>
-                <?php
-                    }
-                ?>
+
                 <div class="d-flex justify-content-end column-gap-5">
                     <input hidden id="id" name="id" type="text" value="<?php echo $user_data->id;?>" /> 
                     <input hidden id="baja" name="baja" type="text" value="<?php echo $user_data->baja;?>" /> 

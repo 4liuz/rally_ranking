@@ -47,7 +47,9 @@
 }
 
 .failed-form{
-    display: flex;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 3fr;
     justify-content: end;
     padding-bottom: 0.5rem;
 }
@@ -141,7 +143,7 @@ button.navigate-back {
 }
 
 .label-input-row-1 label {
-    width: 35%;
+    width: 25%;
     min-width: 5rem;
     text-align: right;
 }
@@ -151,8 +153,8 @@ button.navigate-back {
 }
 
 .full-body-form{
-    width: 50%;
-    margin-left: 20%;
+    margin-right: 10%;
+    margin-left: 10rem;
 }
 /*
 .d-flex:has( > #ofertante) {

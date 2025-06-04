@@ -8,8 +8,11 @@
 .d-flex {
     display: flex;
 }
+.d-grid {
+    display: grid;
+}
 .d-none {
-    display: none;
+    display: none !important;
 }
 /* END DISPLAY */
 
@@ -112,8 +115,44 @@
 .column-gap-5{
     column-gap: 0.5rem;
 }
-
 /* END FLEX SETTINGS */
+
+/* START GRID SETTINGS */
+/* GRID TEMPLATE COLUMNS */
+.template-c-1{
+    grid-template-columns: 1fr;
+}
+.template-c-1-1{
+    grid-template-columns: 1fr 1fr;
+}
+.template-c-1-1-1{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.template-c-1-1-1-1{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.template-c-1-2{
+    grid-template-columns: 1fr 2fr;
+}
+.template-c-2-1{
+    grid-template-columns: 2fr 1fr;
+}
+.template-c-1-3{
+    grid-template-columns: 1fr 3fr;
+}
+.template-c-3-1{
+    grid-template-columns: 3fr 1fr;
+}
+.template-c-2-1-1{
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.template-c-1-2-1{
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.template-c-1-1-2{
+    grid-template-columns: 1fr 1fr 2fr;
+}
+/* END GRID SETTINGS */
 
 
 
@@ -152,10 +191,11 @@
     }
     /* END DISPLAY */
     /* START LAYOUT */
-    .label-input-row-1{
+    .label-input-row-1, .failed-form{
+        display: flex;
         flex-wrap: wrap;
     }
-    .label-input-row-1 label{
+    .label-input-row-1 label, .failed-form span{
         width: 100%;
         text-align: left;
         margin-bottom: 0.25rem;
@@ -179,6 +219,12 @@
         width: 14rem;
     }
     /* END LOGIN */
+    /* START FORM */
+    .full-body-form {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+    /* END FORM */
     /* END LAYOUT */
 }
 
@@ -199,6 +245,13 @@
         display: none;
     }
     /* END DISPLAY */
+    /* START FORM */
+    .full-body-form {
+        margin-right: 10%;
+        margin-left: 5rem;
+    }
+    /* END FORM */
+
 }
 
 /* L: LABTOP */
@@ -255,6 +308,7 @@
 
 
 /* START MIN WIDTH */
+/*
 .min-1{
     min-width: 2vw;
 }
@@ -285,7 +339,47 @@
 .min-10{
     min-width: 20vw;
 }
+*/
+.min-1-rem{
+    min-width: 1rem;
+}
+.min-2-rem{
+    min-width: 2rem;
+}
+.min-3-rem{
+    min-width: 3rem;
+}
+.min-4-rem{
+    min-width: 4rem;
+}
+.min-5-rem{
+    min-width: 5rem;
+}
+.min-10-rem{
+    min-width: 10rem;
+}
+.min-25-rem{
+    min-width: 25rem;
+}
 /* END MIN WIDTH */
+
+/* START AMX WIDTH */
+.max-5-rem{
+    max-width: 5rem;
+}
+.max-10-rem{
+    max-width: 10rem;
+}
+.max-25-rem{
+    max-width: 25rem;
+}
+.max-40-rem{
+    max-width: 40rem;
+}
+.max-50-rem{
+    max-width: 50rem;
+}
+/* END MAX WIDTH */
 
 .m-b-10{
     margin-bottom: 1rem;

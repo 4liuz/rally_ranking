@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#profile-form");
 
+  AttachFormListeners(form);
+
   RefreshInit(
     UpdateProfile,
     "participantes",
@@ -11,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async e => {
     e.preventDefault();
 
-    // if (ProcessForm(form, ValidateUserForm)) {
-
+    if(ProcessForm(form)){
       let formData = new FormData(form);
       
       try {
@@ -46,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error en la solicitud:", error);
         alert("Ocurrió un error al enviar el formulario.");
       }
-    // }
+    } else {
+      alert("Por favor, revise los datos del formulario, algunos son incorrectos")
+    }
   });
 });

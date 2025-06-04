@@ -145,7 +145,7 @@
             .$user_data->email."', '"
             .date("Y/m/d")."', '"
             .date("Y/m/d H:i:s")."', '"
-            .$user_data->ultimo_usuario.")");
+            .$user_data->ultimo_usuario."')");
 
         $mydb -> fastQueryBool();
     }

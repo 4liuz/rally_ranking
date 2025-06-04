@@ -31,7 +31,6 @@ async function VerifyChanges(f, table, id, rol) {
           });
 
           const ultimo_usuario = await res.json();
-          console.log(ultimo_usuario)
 
           if (ultimo_usuario != rol) {
 
