@@ -50,12 +50,14 @@
                     ?>
                     <li><a href="index.php?id=<?php EchoScreenIndex("profile");?>">Perfil</a></li>
                     <li><a href="index.php?id=<?php EchoScreenIndex("my_gallery");?>">Mis Fotos</a></li>
-                    <li><a href="index.php?id=<?php //Launch("new_post");?>">Subir Foto</a></li>
+                    <li><a <?php echo "onclick=\"ProcessImg(event, '".$_SESSION['usuario']."')\""; ?>>Subir Foto</a></li>
+                    <form id="img-form" enctype="multipart/form-data"><input hidden type="file" class="d-none" id="img-input" accept=".jpg,.jpeg,.png" ></form>
+                    <script src="functions/upload_img.js" defer></script>
                     <?php
                     } elseif($_SESSION['rol']=='Administrador') {
                     ?>
                     <li><a href="index.php?id=<?php EchoScreenIndex("manage_rally");?>">Configurar Rally</a></li>
-                    <li><a href="index.php?id=<?php EchoScreenIndex("manage_requests");?>">Solicitudes Pendientes</a></çli>
+                    <li><a href="index.php?id=<?php EchoScreenIndex("manage_requests");?>">Solicitudes Pendientes</a></formçli>
                     <li><a href="index.php?id=<?php EchoScreenIndex("manage_profiles");?>">Gestionar Participantes</a></li>
                     <?php
                     }

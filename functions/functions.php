@@ -55,6 +55,16 @@
         return($user);
     }
 
+    function GetRally(string $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `rally` WHERE `id` = $id");
+        $rally = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($rally);
+    }
+
     function CountUsers() {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -63,6 +73,17 @@
 
         unset($mydb);
         return($user);
+
+    }
+
+    function CountImgUser($id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos` WHERE `participante` = $id");
+        $userImgs = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($userImgs);
 
     }
 
