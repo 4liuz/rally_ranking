@@ -49,16 +49,33 @@ document.addEventListener("DOMContentLoaded", () => {
 /* END EVENT LISTENERS */
 
 
+/* START FUNCTIONS */
 
+/**
+ * Returns string format today's date 'yyyy-mm-dd'
+ * @author 'Aliuz'
+ *
+ * @returns {String} 
+ */
 function GetToday() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
     return today;
 }
 
+
+/**
+ * Changes a client side form values with updated ones from DDBB
+ * @author 'Aliuz'
+ *
+ * @async
+ * @param {{ data?: {}; usuario?: String; nombre?: String; apellidos?: String; email?: String; password?: String; id?: Int; }} object User data
+ * @param {{}} [object.data={}] used only for [refresh.js](refresh.js). If data is given, no more parameters are needed
+ * @returns {void} 
+ */
 async function UpdateProfile
 ({
     data = {}, // Sólo para refresh.js
@@ -153,4 +170,49 @@ function ProcessForm(form) {
     return allValid;
 }
 
+async function UnsuscribeUserManager(id, baja) {
+    baja = parseInt(baja);
+    if(confirm(baja ? "¿Desea dar de alta al participante?" : "¿Está seguro de que desea dar de baja al participante?")){
+        try {
+            await fetch('controller/change_unsuscribed.php', {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                    baja: baja
+                })
+            });
+        
+            alert("¡Participante dado de " + (baja ? "alta" : "baja") + "!");
+
+            // Manage Profiles
+            location.href='index.php?id=12';
+        } catch (error) {
+            console.error('Error al cargar datos:', error);
+        }
+    }
+}
+
+async function UnsuscribeUserProfile(id, baja) {
+    baja = parseInt(baja);
+    if(confirm(baja ? "¿Desea dar de alta al participante?" : "¿Está seguro de que desea dar de baja al participante?")){
+        try {
+            await fetch('controller/change_unsuscribed.php', {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                    baja: baja
+                })
+            });
+        
+            alert("¡Participante dado de " + (baja ? "alta" : "baja") + "!");
+
+            const unsuscribeButton = document.querySelector(".unsuscribe-button");
+            unsuscribeButton.innerHTML = baja ? "Baja" : "Alta";
+            const bajaInput = document.querySelector("#baja");
+            bajaInput.value =  baja ? "0" : "1";
+        } catch (error) {
+            console.error('Error al cargar datos:', error);
+        }
+    }
+}
 /* END EVENT LISTENERS */

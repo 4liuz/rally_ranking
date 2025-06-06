@@ -18,6 +18,7 @@
 
 
     /* START FUNCTIONS */
+
     /**
      * Returns a participant`s username from its id
      * @param string $usuario
@@ -36,6 +37,7 @@
     /* START FUNCTIONS */
     /**
      * Returns a participant´s data from its username
+     * Used alongside GetUserName() u can select a participant from its id
      * @param string $usuario
      * @return bool|object|null
      */
@@ -43,7 +45,11 @@
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb -> querySetter("SELECT * FROM `participantes` WHERE `usuario` COLLATE utf8mb4_bin = '$usuario'");
-        $user = $mydb -> fastQuery();
+        try {
+            $user = $mydb -> fastQuery();
+        } catch(mysqli_sql_exception) {
+            $user -> id = 0;
+        }
 
         unset($mydb);
         return($user);
@@ -60,10 +66,14 @@
 
     }
 
+    /**
+     * Returns a mysqli_result object for profile_manager.php table
+     * @return mysqli_result|null
+     */
     function GetProfileManagerData() {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb -> querySetter("SELECT `id`, `nombre`, `apellidos`, `baja` FROM `participantes`");
+        $mydb -> querySetter("SELECT `id`, `nombre`, `apellidos`, `baja` FROM `participantes` ORDER BY `nombre`");
         $user = $mydb -> fastResponse();
 
         unset($mydb);
@@ -118,9 +128,9 @@
     }
 
     /**
-     * Summary of checkOfertante
-     * @param string $usuario   User ID to check
-     * @return bool|object|null
+     * Inserts a record into 'participantes' from a given object values
+     * @param object $user_data
+     * @return void
      */
     function CreateUser(object $user_data) {
         global $sql;
@@ -151,9 +161,9 @@
     }
 
     /**
-     * Summary of checkOfertante
-     * @param string $usuario   User ID to check
-     * @return bool|object|null
+     * Changes an user info
+     * @param object $user_data
+     * @return void
      */
     function UpdateUser(object $user_data) {
         global $sql;
@@ -169,17 +179,38 @@
             ultimo_usuario = '".$user_data->ultimo_usuario."'
             WHERE id = ".$user_data->id);
         $mydb -> fastQueryBool();
-
-
     }
     
+        /**
+     * Sets 'participantes.baja' to $baja
+     * @param int $id
+     * @param int $baja
+     * @return void
+     */
+    function UpdateUnsuscribed(int $id, int $baja) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE participantes SET
+            baja = '".$baja."'
+            WHERE id = ".$id);
+        $mydb -> fastQueryBool();
+
+    } 
+
+
     function DeleteUser(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("DELETE FROM usuarios WHERE id = ".$id);
+        $mydb ->querySetter("DELETE FROM participantes WHERE id = ".$id);
         $mydb -> fastQueryBool();
     }
 
+    /**
+     * Used for checking if any info should be refreshed on client side
+     * @param string $table
+     * @param int $id
+     */
     function GetLastUpdate(string $table, int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -190,6 +221,24 @@
         return($lastUpdate);
     }
 
+    /**
+     * Checks if an user is unsuscribed to prevent its login
+     * @param int $id
+     */
+    function GetUnsuscribed(int $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter("SELECT `baja` FROM `participantes` WHERE id = ".$id);
+        $unsuscribed = $mydb -> fastQuery() -> baja;
+
+        unset($mydb);
+        return($unsuscribed);
+    }
+
+    /**
+     * Used for checking if another user changed your profile
+     * @param int $id
+     */
     function GetLastUser(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -200,6 +249,12 @@
         return($lastUser);
     }
 
+    /**
+     * Returns every searched record field
+     * @param string $table DDBB table in which search is made
+     * @param int $id Searched record id
+     * @return bool|object|null
+     */
     function SelectFrom(string $table, int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);

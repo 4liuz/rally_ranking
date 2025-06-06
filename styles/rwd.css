@@ -318,38 +318,6 @@
 
 
 /* START MIN WIDTH */
-/*
-.min-1{
-    min-width: 2vw;
-}
-.min-2{
-    min-width: 4vw;
-}
-.min-3{
-    min-width: 6vw;
-}
-.min-4{
-    min-width: 8vw;
-}
-.min-5{
-    min-width: 10vw;
-}
-.min-6{
-    min-width: 12vw;
-}
-.min-7{
-    min-width: 14vw;
-}
-.min-8{
-    min-width: 16vw;
-}
-.min-9{
-    min-width: 18vw;
-}
-.min-10{
-    min-width: 20vw;
-}
-*/
 .min-1-rem{
     min-width: 1rem;
 }
@@ -373,7 +341,7 @@
 }
 /* END MIN WIDTH */
 
-/* START AMX WIDTH */
+/* START MAX WIDTH */
 .max-5-rem{
     max-width: 5rem;
 }
@@ -383,6 +351,9 @@
 .max-25-rem{
     max-width: 25rem;
 }
+.max-30-rem{
+    max-width: 30rem;
+}
 .max-40-rem{
     max-width: 40rem;
 }
@@ -390,6 +361,7 @@
     max-width: 50rem;
 }
 /* END MAX WIDTH */
+
 
 .m-b-10{
     margin-bottom: 1rem;

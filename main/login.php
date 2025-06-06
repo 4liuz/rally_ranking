@@ -9,7 +9,7 @@ if (!isset($_SESSION['rol'])) {
                 <span>Rally<br>Ranking</span>
             </div>
             <div class="login-box">
-                <form action="controller/process_login.php" method="post">
+                <form id="login-form" action="controller/process_login.php" method="post">
                     <div class="label-input-row-1">
                         <label for="usuario">Usuario:</label>
                         <input id="usuario" name="usuario" type="text" />
@@ -39,11 +39,12 @@ if (!isset($_SESSION['rol'])) {
 
                     <!-- START IF USER LOCKED -->
                     <?php
-                    if(isset($_SESSION['user_locked'])){
-                        if($_SESSION['user_locked'] == 1){
+                    if(isset($_SESSION['unsuscribed'])){
+                        if($_SESSION['unsuscribed'] == 1){
                     ?>
 
                     <div class="failed-form">
+                        <span class="min-5-rem"></span>
                         <span>Su usuario está dado de baja. Comuníquese con el administrador para volver a acceder</span>
                     </div>
 
@@ -62,7 +63,7 @@ if (!isset($_SESSION['rol'])) {
     </div>
 </div>
 <?php
-    unset($_SESSION['failed_login']);
+    unset($_SESSION['failed_login'], $_SESSION['unsuscribed']);
 } else {
     header("Location:index.php?id=".GetScreenIndex("home"));
 }

@@ -3,9 +3,9 @@
     session_start();
 
     $user = GetUser($_SESSION['usuario']);
-    DeleteUser($user->id);
-    
     session_unset();
+
+    DeleteUser($user->id);
 
     header("Location:../index.php?id=".GetScreenIndex("home"));
     ?>
