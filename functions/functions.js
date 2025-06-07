@@ -215,4 +215,19 @@ async function UnsuscribeUserProfile(id, baja) {
         }
     }
 }
+
+async function UpdateRally() {
+        try {
+            const formData = new FormData(document.querySelector("#rally-form"))
+            await fetch('controller/process_rally.php', {
+                method: "POST",
+                body: formData
+            });
+        
+            alert("¡La configuración de Rally Ranking se ha actualizado");
+
+        } catch (error) {
+            console.error('Error al cargar datos:', error);
+        }
+    }
 /* END EVENT LISTENERS */

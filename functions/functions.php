@@ -55,6 +55,11 @@
         return($user);
     }
 
+    /**
+     * Returns rally data from its id
+     * @param string $id
+     * @return bool|object|null
+     */
     function GetRally(string $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -65,6 +70,106 @@
         return($rally);
     }
 
+    /**
+     * Returns all valid imgs
+     * @return mysqli_result|null
+     */
+    function GetGalleryImgs() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `fotos` WHERE `estado` = 1");
+        $fotos = $mydb -> fastResponse();
+
+        unset($mydb);
+        return($fotos);
+    }
+
+    /**
+     * Returns all imgs for manage_requests.php
+     * @return mysqli_result|null
+     */
+    function GetApprovalImgs() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `fotos`");
+        $fotos = $mydb -> fastResponse();
+
+        unset($mydb);
+        return($fotos);
+    }
+
+    /**
+     * Returns every img from $user
+     * @param string $user
+     * @return mysqli_result|null
+     */
+    function GetUserImgs(string $user) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `fotos` WHERE `participante` = '$user'");
+        $fotos = $mydb -> fastResponse();
+
+        unset($mydb);
+        return($fotos);
+    }
+
+    /**
+     * Returns an img data from its id
+     * @param int $id
+     * @return bool|object|null
+     */
+    function GetImg(int $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `fotos` WHERE `id` = $id");
+        $img = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($img);
+
+    }
+
+    function GetPublic(string $ip, int $rally) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `votantes` WHERE `ip` = '$ip' AND `rally`= $rally");
+        $public = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($public);
+    }
+
+    function Vote(string $ip, int $rally) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `votantes` SET
+            `votos` = `votos` + 1
+            WHERE `ip` = '".$ip."'
+            AND `rally`= ".$rally);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    function Unvote(string $ip, int $rally) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `votantes` SET
+            `votos` = `votos` - 1
+            WHERE `ip` = '".$ip."'
+            AND `rally`= ".$rally);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    /**
+     * Returns number of registered participants
+     * @return bool|object|null
+     */
+    /*
     function CountUsers() {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -75,8 +180,51 @@
         return($user);
 
     }
+    */
+    
 
-    function CountImgUser($user) {
+    /**
+     * Returns number of imgs
+     * @param mixed $user
+     * @return bool|object|null
+     */
+    /*
+    function CountValidImgs() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos`");
+        $userImgs = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($userImgs);
+
+    }
+    */
+
+    /**
+     * Returns number of imgs
+     * @param mixed $user
+     * @return bool|object|null
+     */
+    /*
+    function CountImgs() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos`");
+        $userImgs = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($userImgs);
+
+    }
+        */
+
+    /**
+     * Returns number of $user imgs
+     * @param mixed $user
+     * @return bool|object|null
+     */
+    function CountUserImgs($user) {
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos` WHERE `participante` = '$user'");
@@ -158,7 +306,7 @@
         $mydb = new mydb($sql["db"]);
 
         $mydb ->querySetter(
-            "INSERT INTO participantes
+            "INSERT INTO `participantes`
             (`usuario`,
             `password`,
             `nombre`,
@@ -179,6 +327,8 @@
             .$user_data->ultimo_usuario."')");
 
         $mydb -> fastQueryBool();
+
+        unset($mydb);
     }
 
     function CreateImg(object $img_data) {
@@ -186,7 +336,7 @@
         $mydb = new mydb($sql["db"]);
 
         $mydb ->querySetter(
-            "INSERT INTO fotos
+            "INSERT INTO `fotos`
             (`ruta`,
             `foto`,
             `participante`,
@@ -201,6 +351,8 @@
             .date("Y/m/d H:i:s")."')");
 
         $mydb -> fastQueryBool();
+
+        unset($mydb);
     }
 
     /**
@@ -212,41 +364,111 @@
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb ->querySetter(
-            "UPDATE participantes SET
-            usuario = '".$user_data->usuario."',
-            password = '".$user_data->password."',
-            nombre = '".$user_data->nombre."',
-            apellidos = '".$user_data->apellidos."',
-            email = '".$user_data->email."',
-            ultima_actualizacion = '".date("Y/m/d H:i:s")."',
-            ultimo_usuario = '".$user_data->ultimo_usuario."'
-            WHERE id = ".$user_data->id);
+            "UPDATE `participantes` SET
+            `usuario` = '".$user_data->usuario."',
+            `password` = '".$user_data->password."',
+            `nombre` = '".$user_data->nombre."',
+            `apellidos` = '".$user_data->apellidos."',
+            `email` = '".$user_data->email."',
+            `ultima_actualizacion` = '".date("Y/m/d H:i:s")."',
+            `ultimo_usuario` = '".$user_data->ultimo_usuario."'
+            WHERE `id` = ".$user_data->id);
         $mydb -> fastQueryBool();
+
+        unset($mydb);
     }
     
-        /**
+    /**
      * Sets 'participantes.baja' to $baja
      * @param int $id
      * @param int $baja
      * @return void
      */
-    function UpdateUnsuscribed(int $id, int $baja) {
+    function UpdateUnsuscribed(int $id, int $baja, $admin) {
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb ->querySetter(
-            "UPDATE participantes SET
-            baja = '".$baja."'
-            WHERE id = ".$id);
+            "UPDATE `participantes` SET
+            `ultima_actualizacion` = '".date("Y/m/d H:i:s")."',
+            `ultimo_usuario` = '".$admin."',
+            `baja` = ".$baja."
+            WHERE `id` = ".$id);
         $mydb -> fastQueryBool();
 
+        unset($mydb);
     } 
 
+    function UpdateApproval(int $id, int $estado, $admin) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `fotos` SET
+            `ultima_actualizacion` = '".date("Y/m/d H:i:s")."',
+            `admin` = '".$admin."',
+            `estado` = '".$estado."'
+            WHERE `id` = ".$id);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    function UpdateRally(object $rally) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `rally` SET
+            `fecha_inicio_subidas` = '".$rally->fecha_inicio_subidas."',
+            `fecha_fin_subidas` = '".$rally->fecha_fin_subidas."',
+            `fecha_inicio_votaciones` = '".$rally->fecha_inicio_votaciones."',
+            `fecha_fin_votaciones` = '".$rally->fecha_fin_votaciones."',
+            `limite_fotos_participante` = '".$rally->limite_fotos_participante."',
+            `ultima_actualizacion` = '".date("Y/m/d H:i:s")."'
+            WHERE `id` = ".$rally->id);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    function IncreaseVotes(int $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `fotos` SET
+            `votos` = `votos` + 1
+            WHERE `id` = ".$id);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    function DecreaseVotes(int $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `fotos` SET
+            `votos` = `votos` - 1
+            WHERE `id` = ".$id);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
 
     function DeleteUser(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("DELETE FROM participantes WHERE id = ".$id);
+        $mydb ->querySetter("DELETE FROM `participantes` WHERE `id` = ".$id);
         $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
+    function DeleteImg(int $id) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter("DELETE FROM `fotos` WHERE `id` = ".$id);
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
     }
 
     /**
@@ -257,7 +479,7 @@
     function GetLastUpdate(string $table, int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("SELECT `ultima_actualizacion` FROM `".$table."` WHERE id = ".$id);
+        $mydb ->querySetter("SELECT `ultima_actualizacion` FROM `".$table."` WHERE `id` = ".$id);
         $lastUpdate = $mydb -> fastQuery() -> ultima_actualizacion;
 
         unset($mydb);
@@ -271,7 +493,7 @@
     function GetUnsuscribed(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("SELECT `baja` FROM `participantes` WHERE id = ".$id);
+        $mydb ->querySetter("SELECT `baja` FROM `participantes` WHERE `id` = ".$id);
         $unsuscribed = $mydb -> fastQuery() -> baja;
 
         unset($mydb);
@@ -285,7 +507,7 @@
     function GetLastUser(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("SELECT `ultimo_usuario` FROM `participantes` WHERE id = ".$id);
+        $mydb ->querySetter("SELECT `ultimo_usuario` FROM `participantes` WHERE `id` = ".$id);
         $lastUser = $mydb -> fastQuery() -> ultimo_usuario;
 
         unset($mydb);
@@ -301,7 +523,7 @@
     function SelectFrom(string $table, int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter("SELECT * FROM `".$table."` WHERE id = ".$id);
+        $mydb ->querySetter("SELECT * FROM `".$table."` WHERE `id` = ".$id);
         $res = $mydb -> fastQuery();
 
         unset($mydb);
@@ -316,6 +538,28 @@
         }
 
         return true;
+    }
+
+    function GetIp() {
+        return $_SERVER['REMOTE_ADDR'] ?? 'IP no detectada';
+    }
+
+    function GetImgStatus($estado) {
+        $status = [];
+        switch ($estado) {
+            case 0:
+                $status['class'] = "rejected";
+                $status['message'] = "Rechazada";
+                return json_decode(json_encode($status));
+            case 1:
+                $status['class'] = "approved";
+                $status['message'] = "Aprovada";
+                return json_decode(json_encode($status));
+            case 2:
+                $status['class'] = "pending";
+                $status['message'] = "Pendiente";
+                return json_decode(json_encode($status));
+        }
     }
 
     /* * * END FUNCTIONS * * */

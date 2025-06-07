@@ -1,5 +1,7 @@
 <?php
 if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
+    $img = GetImg($_POST['id']);
+
 ?>
 <div class="card">
     <div class="card-head">
@@ -17,11 +19,10 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
                 </button>
         
                 <div class="post-image">
-                    <img src="" alt="">
+                    <img src="uploads/<?php echo $img->ruta; ?>" title="<?php echo $img->foto; ?>" alt="<?php echo $img->foto; ?>">
                 </div>
 
                 <div class="vote-box">
-                    <!-- <button>Votar <i style="font-size:24px" class="fa">&#xf087;</i></button> -->
                     <button class="">Aceptar&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i></button>
                     <button class="">Rechazar&nbsp;<i style="font-size:24px" class="fa">&#xf088;</i></button>
                 </div>

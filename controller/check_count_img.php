@@ -5,7 +5,7 @@
     $jsonData = json_decode(file_get_contents("php://input"));
 
 
-    $imgs = CountImgUser( GetUserName($jsonData->id));
+    $imgs = CountUserImgs( GetUserName($jsonData->id));
 
     echo json_encode($imgs);
 ?>

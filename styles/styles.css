@@ -121,7 +121,7 @@ body {
 }
 
 .card-head {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .card-head span {
@@ -319,27 +319,58 @@ button.navigate-back {
 }
 
 .gallery-cell {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
     aspect-ratio: 1/1;
     transition: transform ease-in-out 0.13s;
-    /*eliminar en producción*/
-    background-color: #fff;
+    background-color: #000000;
 }
 
-.gallery-cell:hover {
+.gallery-cell img{
+    height: 100%;
+}
+
+.gallery-cell:hover, .img-rejected:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-.gallery-cell:active {
+.gallery-cell:active, .img-rejected:hover {
     transform: scale(1.06);
 }
 
-.post-image{
+.post {
     width:100%;
-    /* Eliminar en producción */
-    background-color: #fff;
-    height: 450px;
+    max-width: 1000px;
+    margin: auto;
 }
+
+.post-image{
+    margin-bottom: 0.2rem;
+    display: flex;
+    justify-content: center;
+    /* Eliminar en producción */
+    background-color: #000;
+    height: 75vh;
+}
+
+.post-image img {
+    z-index: 0;
+    height: 100%;
+}
+
+/*
+.img-rejected {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    transition: transform ease-in-out 0.13s;
+    background-color: #999999bb;
+}
+*/
+
 /** END GALLERY **/
 
 /** START POST **/

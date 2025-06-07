@@ -235,6 +235,15 @@
         margin-left: 1rem;
     }
     /* END FORM */
+    /* START POST */
+    .post-image{
+        height: auto;
+    }
+    .post-image img {
+        width: 100%;
+    }
+    /* END POST */
+
     /* END LAYOUT */
 }
 
@@ -261,6 +270,14 @@
         margin-left: 5rem;
     }
     /* END FORM */
+    /* START POST */
+    .post-image{
+        height: auto;
+    }
+    .post-image img {
+        width: 100%;
+    }
+    /* END POST */
 
 }
 
