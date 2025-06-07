@@ -17,7 +17,10 @@ async function ProcessImg(event, user) {
 
     const userId = await res.json();
 
-    const canUpload = await CheckUploadConfig(1, userId);
+    // TODO: Rally selector if multiple rallys functionality is implemented
+    const rally = 1;
+
+    const canUpload = await CheckUploadConfig(rally, userId);
   
     if (canUpload.canPost) {
   
@@ -37,7 +40,6 @@ async function ProcessImg(event, user) {
         const allowedTypes = ['image/jpeg', 'image/png'];
         const reader = new FileReader();
     
-        // Verificamos el tipo de archivo
         if (!allowedTypes.includes(file.type)) {
           return ShowError(`Formato no permitido.` + file.type ? `\nDetectado: ${file.type})` : '');
         }
@@ -64,13 +66,13 @@ async function ProcessImg(event, user) {
               return ShowError(errores.join('\n'));
             }
     
-            let texto;
+            let title;
             let unprocessed = true;
     
             while(unprocessed) {
-              texto = prompt("Elija un título descriptivo para su foto. Máximo 100 caracteres, todo contenido que exceda este límite será eliminado")
+              title = prompt("Elija un título descriptivo para su foto. Máximo 100 caracteres, todo contenido que exceda este límite será eliminado")
     
-              if (texto === null || texto.trim() === '') {
+              if (title === null || title.trim() === '') {
                 if(confirm("¿Deseas cancelar la subida?")){
                   alert("Operación cancelada, tu foto no se ha subido");
                   return;
@@ -80,11 +82,9 @@ async function ProcessImg(event, user) {
               }
             }
     
-            texto = texto.trim().substring(0, 100);
+            title = title.trim().substring(0, 100);
     
-            CreateImgForm(usuario)
-    
-            SaveImage(file); // TODO
+            SaveImage(CreateImgForm(file, user, rally, title));
     
             alert('¡Tu foto se ha subido con éxito!\nAún está a la espera de que la admita el administrador, puedes ver su estado en "Mis Fotos"');
           };
@@ -94,7 +94,7 @@ async function ProcessImg(event, user) {
         reader.readAsDataURL(file);
       };
     
-      input.click(); // Lanza el selector del sistema operativo
+      input.click();
     } else {
       alert(canUpload.message);
     }
@@ -105,18 +105,7 @@ async function ProcessImg(event, user) {
 }
 
 async function CheckUploadConfig(rallyId, userId) {
-    try {
-      let res = await fetch('controller/check_rally.php', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: rallyId
-        })
-      });
-
-      const rallyData = await res.json();
+      const rallyData = await GetRallyData(rallyId);
 
       res = await fetch('controller/check_count_img.php', {
         method: "POST",
@@ -149,24 +138,45 @@ async function CheckUploadConfig(rallyId, userId) {
       }
 
       return rallyCheck;
-
-    } catch (error) {
-      console.error('Error al verificar datos del rally:', error);
-    }
-
 }
 
 function ShowError(mensaje) {
-  // TODO
   alert(`La imagen no cumple con los requisitos de subida. ${mensaje}`);
 }
 
-function SaveImage(file) {
-  // TODO
-  console.log('GuardarFoto llamada con: ', file);
+async function SaveImage(formData) {
+  try {
+    await fetch('controller/process_img.php', {
+      method: "POST",
+      body: formData
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function CreateImgForm(usuario) {
-  // TODO
-  console.log('GuardarFoto llamada con: ', usuario);
+function CreateImgForm(file, participante, rally, foto) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("participante", participante);
+  formData.append("rally", rally);
+  formData.append("foto", foto);
+  return formData;
+}
+
+async function GetRallyData(rallyId){
+  try {
+    let res = await fetch('controller/check_rally.php', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: rallyId
+      })
+    });
+    return await res.json();
+  }catch (error) {
+    console.log(error)
+  }
 }

@@ -76,10 +76,10 @@
 
     }
 
-    function CountImgUser($id) {
+    function CountImgUser($user) {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos` WHERE `participante` = $id");
+        $mydb -> querySetter("SELECT COUNT(*) count FROM `fotos` WHERE `participante` = '$user'");
         $userImgs = $mydb -> fastQuery();
 
         unset($mydb);
@@ -177,6 +177,28 @@
             .date("Y/m/d")."', '"
             .date("Y/m/d H:i:s")."', '"
             .$user_data->ultimo_usuario."')");
+
+        $mydb -> fastQueryBool();
+    }
+
+    function CreateImg(object $img_data) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+
+        $mydb ->querySetter(
+            "INSERT INTO fotos
+            (`ruta`,
+            `foto`,
+            `participante`,
+            `rally`,
+            `ultima_actualizacion`)
+
+            VALUES 
+            ('".$img_data->ruta."', '"
+            .$img_data->foto."', '"
+            .$img_data->participante."', '"
+            .$img_data->rally."', '"
+            .date("Y/m/d H:i:s")."')");
 
         $mydb -> fastQueryBool();
     }
@@ -284,6 +306,16 @@
 
         unset($mydb);
         return($res);
+    }
+
+    function CheckUploadsDir(): bool {
+        $uploadsDir = __DIR__ . '/../uploads';
+
+        if (!is_dir($uploadsDir)) {
+            return mkdir($uploadsDir, 0755, true);
+        }
+
+        return true;
     }
 
     /* * * END FUNCTIONS * * */
