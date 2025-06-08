@@ -246,6 +246,17 @@
 
     }
 
+    function CountVotes() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT SUM(votos) count FROM `fotos`");
+        $votes = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($votes);
+
+    }
+
     /**
      * Returns a mysqli_result object for profile_manager.php table
      * @return mysqli_result|null
@@ -259,6 +270,21 @@
         unset($mydb);
         return($user);
     }
+
+    function GetRanking() {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `fotos` WHERE `estado` = 1 ORDER BY `votos` DESC LIMIT 3");
+        $winners = $mydb -> fastResponse();
+        $ranking = [];
+        while($img = $winners -> fetch_assoc()) {
+            array_push($ranking, $img);
+        }
+
+        unset($mydb);
+        return($ranking);
+    }
+
 
     /**
      * Checks user and password for login screen

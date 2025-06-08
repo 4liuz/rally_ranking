@@ -449,26 +449,36 @@ button.navigate-back {
 
 }
 
-.ranking-1, .ranking-not-1 {
+.graphic-1, .graphic-2, .graphic-3 {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
     border-radius: 0.2rem 0.2rem 0 0;
     border-style: solid solid none solid;
     border-color: #0003;
     font-weight: 900;
 }
 
-.ranking-1{
-    height: 100%;
+.graphic-1 span, .graphic-2 span,.graphic-3 span {
+    overflow: hidden;
+}
+
+.graphic-1 span:first-child, .graphic-2 span:first-child,.graphic-3 span:first-child {
+    padding-top: 1rem;
+}
+
+.graphic-1{
     width: 10vw;
     background-color: #297de0;
 }
 
-.ranking-not-1{
-    height: 50%;
+.graphic-1{
+    width: 10vw;
+    background-color: #297de0;
+}
+
+.graphic-2, .graphic-3{
     width: 10vw;
     background-color: #e08c29;
 }

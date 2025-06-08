@@ -298,6 +298,76 @@ async function CheckVotante() {
     }
 }
 
+async function GetRanking() {
+    try {
+        const response = await fetch("controller/check_ranking.php", {
+            method: "POST"
+        });
+        const ranking = await response.json();
+        return ranking;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function GetUser(usuario) {
+    try {
+        const response = await fetch("controller/get_user.php", {
+            method: "POST",
+            body: JSON.stringify({
+                usuario: usuario
+            })
+        });
+        const participant = await response.json();
+        return participant;
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+async function CountVotes() {
+    try {
+        const response = await fetch("controller/check_count_votes.php");
+        const votes = await response.json();
+        return votes;
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
+async function RefreshRanking() {
+    const ranking = await GetRanking();
+    const countVotes = await CountVotes();
+    const totalVotes = countVotes.count;
+    let i = 1;
+    let rankingSpans = [];
+    let votesSpans = [];
+    let percentageSpans = [];
+    
+    for (e of ranking) {
+        const participant = await GetUser(e.participante);
+        const height = Math.round((e.votos / totalVotes) *100);
+
+        rankingSpans[i] = document.querySelector("#ranking-" + i);
+        votesSpans[i] = document.querySelector("#votes-" + i);
+        percentageSpans[i] = document.querySelector("#percentage-" + i);
+
+        rankingSpans[i].innerHTML = i + ".º " + e.participante + " - " + participant.nombre + " " +  participant.apellidos + " - " + e.foto;
+        percentageSpans[i].innerHTML = height + "%";
+        votesSpans[i].innerHTML = e.votos;
+        
+        document.querySelector(".graphic-" + i).style.height = height+"%";
+        document.querySelector(".graphic-" + i).title = i + ".º " + e.participante + " - " + participant.nombre + " " +  participant.apellidos + " - " + e.foto;
+
+        i++;
+    }
+
+    
+}
+
 async function IncreaseImgVote(id) {
     try {
         await fetch("controller/increase_img_vote.php", {
