@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2025 a las 18:22:52
+-- Tiempo de generación: 08-06-2025 a las 21:09:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -47,14 +47,26 @@ INSERT INTO `administradores` (`usuario`, `password`) VALUES
 
 CREATE TABLE `fotos` (
   `id` int(11) NOT NULL,
-  `foto` varchar(250) DEFAULT NULL,
+  `ruta` varchar(250) DEFAULT NULL,
+  `foto` varchar(50) DEFAULT NULL,
   `participante` varchar(30) DEFAULT NULL,
-  `votos` int(11) DEFAULT NULL,
+  `votos` int(11) DEFAULT 0,
   `admin` varchar(30) DEFAULT NULL,
-  `estado` varchar(20) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT 2,
   `rally` int(11) DEFAULT NULL,
   `ultima_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `fotos`
+--
+
+INSERT INTO `fotos` (`id`, `ruta`, `foto`, `participante`, `votos`, `admin`, `estado`, `rally`, `ultima_actualizacion`) VALUES
+(1, 'img_684398bb98a1b4.30321722.jpg', 'Cisne', 'aliuz', 0, 'admin', 2, 1, '2025-06-08 03:41:20'),
+(2, 'img_684398eb9604a7.04352394.jpg', 'Ganso', 'aliuz', 0, 'admin', 0, 1, '2025-06-08 07:40:51'),
+(3, 'img_6844575f4e5e83.77251735.jpg', 'Frailecillo en su salsa', 'esthertru', 0, 'admin', 2, 1, '2025-06-08 12:38:01'),
+(4, 'img_6845691f075e50.32025054.jpg', 'Búho 2', 'aliuz', 0, 'admin', 1, 1, '2025-06-08 12:43:38'),
+(5, 'img_6845de73d2e628.03426005.jpg', 'Verde que te quiero verde', 'dukati', 0, 'admin', 1, 1, '2025-06-08 21:03:41');
 
 -- --------------------------------------------------------
 
@@ -80,14 +92,12 @@ CREATE TABLE `participantes` (
 --
 
 INSERT INTO `participantes` (`id`, `usuario`, `password`, `nombre`, `apellidos`, `email`, `fecha_creacion`, `baja`, `ultima_actualizacion`, `ultimo_usuario`) VALUES
-(1, 'aliuz', 'Aliuz.1', 'Alejandro ', 'Ruiz Martín', 'aliuz@gmail.com', '2025-05-27', 0, '2025-06-04 02:50:30', 'aliuz'),
-(2, 'dukati', 'dukati', 'Sergio', 'Morales Trujillo', 'sergio@gmail.com', '2025-05-27', 0, '2025-05-28 18:26:56', NULL),
-(3, 'esthertru', 'esthertru', 'Esther', 'Núñez Burgos', 'esther@gmail.com', '2025-05-27', 0, '2025-05-28 20:34:10', NULL),
-(4, 'martin', 'martin', 'Martín', 'Gómez Tovaruela', 'martin@gmail.com', '2025-05-28', 1, '2025-05-28 20:32:49', NULL),
-(5, 'orc', 'orc', 'Orc', 'Bad Rlybad', 'orc@gmail.com', '2025-05-28', 0, '2025-05-28 21:30:30', NULL),
-(6, 'goblin', 'goblin', 'Goblin', 'Duende Verde', 'goblin@gmail.com', '2025-05-28', 0, '2025-05-29 18:15:19', NULL),
-(7, 'Alquimia', 'Alquimia', 'Alquimia', 'Pérez Rayuela', 'alquimia@gmail.com', '2025-05-29', 0, '2025-05-29 18:18:17', NULL),
-(8, 'parras', 'Parras.1', 'Antonio José', 'Parras Flores', 'parras@gmail.com', '2025-06-04', 0, '2025-06-04 03:21:51', 'parras');
+(1, 'aliuz', 'Aliuz.1', 'Alejandro ', 'Ruiz Martín', 'aliuz@gmail.com', '2025-05-27', 0, '2025-06-08 17:19:24', 'aliuz'),
+(2, 'dukati', 'Dukati.1', 'Sergio', 'Morales Trujillo', 'sergio@gmail.com', '2025-05-27', 0, '2025-05-28 18:26:56', NULL),
+(3, 'esthertru', 'Esthertru.1', 'Esther', 'Núñez Burgos', 'esther@gmail.com', '2025-05-27', 0, '2025-05-28 20:34:10', NULL),
+(4, 'parras', 'Parras.1', 'Antonio José', 'Parras Flores', 'parras@gmail.com', '2025-06-04', 0, '2025-06-04 03:21:51', 'parras'),
+(5, 'yzzz', 'Yaqi.1', 'Ya Qiang', 'Zhu', 'yaqiang@gmail.com', '2025-05-28', 1, '2025-05-28 20:32:49', NULL),
+(6, 'talegaso', 'Talegaso.1', 'José', 'García de Lemus', 'jose@gmail.com', '2025-06-08', 0, '2025-06-08 20:59:16', 'talegaso');
 
 -- --------------------------------------------------------
 
@@ -105,6 +115,13 @@ CREATE TABLE `rally` (
   `ultima_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `rally`
+--
+
+INSERT INTO `rally` (`id`, `fecha_inicio_subidas`, `fecha_fin_subidas`, `fecha_inicio_votaciones`, `fecha_fin_votaciones`, `limite_fotos_participante`, `ultima_actualizacion`) VALUES
+(1, '2025-06-08', '2025-06-09', '2025-06-10', '2025-06-11', 3, '2025-06-08 12:48:11');
+
 -- --------------------------------------------------------
 
 --
@@ -113,7 +130,8 @@ CREATE TABLE `rally` (
 
 CREATE TABLE `votantes` (
   `ip` varchar(20) NOT NULL,
-  `votos` int(1) NOT NULL DEFAULT 0
+  `rally` int(11) NOT NULL,
+  `votos` int(1) NOT NULL DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -149,7 +167,7 @@ ALTER TABLE `rally`
 -- Indices de la tabla `votantes`
 --
 ALTER TABLE `votantes`
-  ADD PRIMARY KEY (`ip`);
+  ADD PRIMARY KEY (`ip`,`rally`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -159,19 +177,19 @@ ALTER TABLE `votantes`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `participantes`
 --
 ALTER TABLE `participantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `rally`
 --
 ALTER TABLE `rally`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

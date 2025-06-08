@@ -2,18 +2,9 @@
     require_once("mydb.php");
     require_once("user_data.php");
     require_once("controller.php");
+    require_once("ddbb.php");
 
     /* START VARIABLES */
-    $sql = array(
-        // SQL DDBB ARRAY
-        "db" => array(
-            "host" => "localhost",
-            "user" => "root",
-            "pass" => "",
-            "db" => "rally_ranking"
-        )  
-    );
-
     $regexMap = json_decode(json_encode(array(
         "usuario" => "/^[a-zA-Z0-9. ]+$/",
         "nombre" => "/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑçÇàèìòùÀÈÌÒÙ\s]+$/",

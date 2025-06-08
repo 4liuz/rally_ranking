@@ -356,10 +356,13 @@ async function RefreshRanking() {
         percentageSpans[i] = document.querySelector("#percentage-" + i);
 
         rankingSpans[i].innerHTML = i + ".º " + e.participante + " - " + participant.nombre + " " +  participant.apellidos + " - " + e.foto;
-        percentageSpans[i].innerHTML = height + "%";
         votesSpans[i].innerHTML = e.votos;
         
-        document.querySelector(".graphic-" + i).style.height = height+"%";
+        if(totalVotes != 0) {
+            percentageSpans[i].innerHTML = height + "%";
+            document.querySelector(".graphic-" + i).style.height = height+"%";
+        }
+
         document.querySelector(".graphic-" + i).title = i + ".º " + e.participante + " - " + participant.nombre + " " +  participant.apellidos + " - " + e.foto;
 
         i++;
