@@ -1,6 +1,6 @@
 let lastUpdate = '';
 
-async function VerifyChanges(f, table, id, rol) {
+async function VerifyChanges(f, table, id, lastUser = null) {
 
   try {
     const res = await fetch('controller/check_refresh.php', {
@@ -32,14 +32,14 @@ async function VerifyChanges(f, table, id, rol) {
 
           const ultimo_usuario = await res.json();
 
-          if (ultimo_usuario != rol) {
+          if (ultimo_usuario != lastUser) {
 
             await LoadData(f, table, id);
           }
 
         } else {
 
-          await LoadData(f, table, id); // Actualiza la interfaz
+          await LoadData(f, table, id);
         }
       }
 
@@ -73,8 +73,8 @@ async function LoadData(f, table, id) {
   }
 }
 
-function RefreshInit(f, table, id, rol) {
-  VerifyChanges(f, table, id, rol);
+function RefreshInit(f, table, id, lastUser) {
+  VerifyChanges(f, table, id, lastUser);
   
-  setInterval(() => VerifyChanges(f, table, id, rol), 5000);
+  setInterval(() => VerifyChanges(f, table, id, lastUser), 5000);
 }

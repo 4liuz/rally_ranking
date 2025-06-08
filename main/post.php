@@ -3,6 +3,9 @@ if(!isset($_SESSION['rol'])){
     $img = GetImg($_POST['id']);
     $participant = GetUser($img->participante);
     $author = $participant->nombre." ".$participant->apellidos;
+    $rally = GetRally(1);
+    $isVoteDate = ($rally->fecha_inicio_votaciones <= date("Y-m-d") && date("Y-m-d") <= $rally->fecha_fin_votaciones);
+
 ?>
 
 <div class="card">
@@ -25,14 +28,28 @@ if(!isset($_SESSION['rol'])){
             </div>
             <span class="author-tag"><em><?php echo $author." (".$img->participante.")"; ?></em></span>
 
+            <input hidden id="id" value="<?php echo $_POST['id']; ?>" >
+
+            <?php
+                if ($isVoteDate) {
+            ?>
             <div class="vote-box">
-                <button>Votar&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i></button>
-                <span><?php echo $img->votos; ?>&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i></span>
+                <button id="vote-button">Votar&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i></button>
+                <span id="votes"><?php echo $img->votos; ?>&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i></span>
             </div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 </div>
 <?php
+    if ($isVoteDate) {
+?>
+<script src="functions/refresh.js" defer></script>
+<script src="functions/votes_updater.js" defer></script>
+<?php
+    }
 } else {
     header("Location:index.php?id=".GetScreenIndex("home"));
 }

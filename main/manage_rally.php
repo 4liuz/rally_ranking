@@ -15,7 +15,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
                 </div>
                 <div class="d-flex justify-content-end align-items-center column-gap-5 m-b-10">
                     <label for="fecha_fin_subidas">Fin del plazo de subida de fotos:</label>
-                    <input id="fecha_fin_subidas" name="fecha_fin_subidas" type="date" class="" value="<?php echo $rally->fecha_fin_subidas; ?>" />
+                    <input id="fecha_fin_subidas" name="fecha_fin_subidas" type="date" class="" min="<?php echo $rally->fecha_inicio_subidas; ?>" value="<?php echo $rally->fecha_fin_subidas; ?>" />
                 </div>
                 <div class="d-flex justify-content-end align-items-center column-gap-5 m-b-10">
                     <label for="fecha_inicio_votaciones">Comienzo del plazo de votaciones:</label>
@@ -23,7 +23,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'Administrador') {
                 </div>
                 <div class="d-flex justify-content-end align-items-center column-gap-5 m-b-10">
                     <label for="fecha_fin_votaciones">Fin del plazo de votaciones:</label>
-                    <input id="fecha_fin_votaciones" name="fecha_fin_votaciones" type="date" class="" value="<?php echo $rally->fecha_fin_votaciones; ?>" />
+                    <input id="fecha_fin_votaciones" name="fecha_fin_votaciones" type="date" class="" class="" min="<?php echo $rally->fecha_inicio_votaciones; ?>" value="<?php echo $rally->fecha_fin_votaciones; ?>" />
                 </div>
                 <div class="d-flex justify-content-end align-items-center column-gap-5 m-b-10">
                     <label for="limite_fotos_participante">Límite de fotos por participante:</label>

@@ -91,7 +91,7 @@
     function GetApprovalImgs() {
         global $sql;
         $mydb = new mydb($sql["db"]);
-        $mydb -> querySetter("SELECT * FROM `fotos`");
+        $mydb -> querySetter("SELECT * FROM `fotos` WHERE `estado` = 2");
         $fotos = $mydb -> fastResponse();
 
         unset($mydb);
@@ -144,6 +144,20 @@
         $mydb = new mydb($sql["db"]);
         $mydb ->querySetter(
             "UPDATE `votantes` SET
+            `votos` = `votos` - 1
+            WHERE `ip` = '".$ip."'
+            AND `rally`= ".$rally);
+        $mydb -> fastQueryBool();
+        
+        unset($mydb);
+        }
+        
+    /*
+    function Unvote(string $ip, int $rally) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb ->querySetter(
+            "UPDATE `votantes` SET
             `votos` = `votos` + 1
             WHERE `ip` = '".$ip."'
             AND `rally`= ".$rally);
@@ -151,20 +165,8 @@
 
         unset($mydb);
     }
-
-    function Unvote(string $ip, int $rally) {
-        global $sql;
-        $mydb = new mydb($sql["db"]);
-        $mydb ->querySetter(
-            "UPDATE `votantes` SET
-            `votos` = `votos` - 1
-            WHERE `ip` = '".$ip."'
-            AND `rally`= ".$rally);
-        $mydb -> fastQueryBool();
-
-        unset($mydb);
-    }
-
+    */
+    
     /**
      * Returns number of registered participants
      * @return bool|object|null
@@ -355,6 +357,26 @@
         unset($mydb);
     }
 
+    function CreateVotante(object $votante): void {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+
+        $mydb ->querySetter(
+            "INSERT INTO `votantes`
+            (`ip`,
+            `rally`,
+            `votos`)
+
+            VALUES 
+            ('".$votante->ip."', '"
+            .$votante->rally."', '"
+            .$votante->votos."')");
+
+        $mydb -> fastQueryBool();
+
+        unset($mydb);
+    }
+
     /**
      * Changes an user info
      * @param object $user_data
@@ -398,7 +420,7 @@
         unset($mydb);
     } 
 
-    function UpdateApproval(int $id, int $estado, $admin) {
+    function UpdateApproval(int $id, int $estado, string $admin) {
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb ->querySetter(
@@ -428,19 +450,22 @@
 
         unset($mydb);
     }
-
+    
+    
     function IncreaseVotes(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
         $mydb ->querySetter(
             "UPDATE `fotos` SET
-            `votos` = `votos` + 1
+            `votos` = `votos` + 1,
+            `ultima_actualizacion` = '".date("Y/m/d H:i:s")."'
             WHERE `id` = ".$id);
         $mydb -> fastQueryBool();
 
         unset($mydb);
     }
-
+    
+    /*
     function DecreaseVotes(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -452,7 +477,7 @@
 
         unset($mydb);
     }
-
+    */
     function DeleteUser(int $id) {
         global $sql;
         $mydb = new mydb($sql["db"]);
@@ -542,6 +567,16 @@
 
     function GetIp() {
         return $_SERVER['REMOTE_ADDR'] ?? 'IP no detectada';
+    }
+
+    function GetVotante($ip) {
+        global $sql;
+        $mydb = new mydb($sql["db"]);
+        $mydb -> querySetter("SELECT * FROM `votantes` WHERE `ip` = '$ip'");
+        $votante = $mydb -> fastQuery();
+
+        unset($mydb);
+        return($votante);
     }
 
     function GetImgStatus($estado) {

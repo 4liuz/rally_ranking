@@ -112,7 +112,7 @@ if (isset($_SESSION['rol'])) {
                     <input hidden id="ultimo_usuario" name="ultimo_usuario" type="text" value="<?php echo $_SESSION['usuario'];?>" /> 
 
                     <?php if ($_SESSION['rol'] == "Participante"){ ?>
-                    <button class="delete-button" <?php echo("onclick=\"document.addEventListener('submit', e => {e.preventDefault();location.href='controller/delete_user.php'})\"");?>>Borrar Cuenta</button>
+                    <button class="delete-button">Borrar Cuenta</button>
                     <?php } ?>
                     <?php if ($_SESSION['rol'] == "Administrador"){ ?>
                     <button class="unsuscribe-button" onclick="UnsuscribeUserProfile(document.querySelector('#id').value, document.querySelector('#baja').value)"><?php echo ($user_data -> baja) ? "Alta" : "Baja"; ?></button>
@@ -125,6 +125,13 @@ if (isset($_SESSION['rol'])) {
 </div>
 <script src="functions/refresh.js" defer></script>
 <script src="functions/profile_updater.js" defer></script>
+<?php
+    if($_SESSION['rol'] == "Participante") {
+?>
+<script src="functions/profile_deleter.js" defer></script>
+<?php
+    }
+?>
 <?php
     unset($user_data);
 } else {

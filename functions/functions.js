@@ -217,17 +217,107 @@ async function UnsuscribeUserProfile(id, baja) {
 }
 
 async function UpdateRally() {
+    try {
+        const formData = new FormData(document.querySelector("#rally-form"))
+        await fetch('controller/process_rally.php', {
+            method: "POST",
+            body: formData
+        });
+    
+        alert("¡La configuración de Rally Ranking se ha actualizado!");
+
+    } catch (error) {
+        console.error('Error al cargar datos:', error);
+    }
+}
+
+async function DeleteImg(id) {
+    if (confirm("¡CUIDADO!\n¿De verdad quiere ELIMINAR esta foto?")) {
         try {
-            const formData = new FormData(document.querySelector("#rally-form"))
-            await fetch('controller/process_rally.php', {
+            await fetch('controller/delete_img.php', {
                 method: "POST",
-                body: formData
+                body: JSON.stringify({
+                    id: id
+                })
             });
         
-            alert("¡La configuración de Rally Ranking se ha actualizado");
-
+            alert("¡La foto se ha borrado con éxito");
+            location.href='index.php?id=7'; // my_gallery.php
+    
         } catch (error) {
             console.error('Error al cargar datos:', error);
         }
     }
+}
+
+async function ApproveImg(id, admin) {
+        try {
+            await fetch("controller/process_approval.php", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                    admin: admin,
+                    estado: 1
+                }),
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+}
+
+async function RejectImg(id, admin) {
+        try {
+            await fetch("controller/process_approval.php", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                    admin: admin,
+                    estado: 0
+                }),
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+}
+
+function UpdateVotes(data) {
+    document.querySelector("#votes").innerHTML = data.data.votos + '&nbsp;<i style="font-size:24px" class="fa">&#xf087;</i>';
+}
+
+async function CheckVotante() {
+    try {
+        const response = await fetch("controller/check_votante.php", {
+            method: "POST"
+        });
+        const votante = await response.json();
+        return votante;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function IncreaseImgVote(id) {
+    try {
+        await fetch("controller/increase_img_vote.php", {
+            method: "POST",
+            body: JSON.stringify({
+                id: id
+            })
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function DecreaseVote() {
+    try {
+        await fetch("controller/decrease_vote.php", {
+            method: "POST"
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
 /* END EVENT LISTENERS */

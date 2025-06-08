@@ -1,3 +1,5 @@
+<?php
+?>
 <div class="d-flex align-items-stretch">
     <div class="side-menu">
         <div class="sign-button-box">
@@ -64,6 +66,7 @@
                     $false = false;
                     if($false){
                         // Comentar código desde php y que no aparezca en el HTML. Poner false directamente da error en el editor
+                        // Herramienta de Navegación para el desarrollador.
                     ?>
                     <li><a href="index.php?id=<?php EchoScreenIndex("post");?>">post</a></li>
                     <li><a href="index.php?id=<?php EchoScreenIndex("post_status");?>">post_status</a></li>

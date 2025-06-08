@@ -87,6 +87,7 @@ async function ProcessImg(event, user) {
             SaveImage(CreateImgForm(file, user, rally, title));
     
             alert('¡Tu foto se ha subido con éxito!\nAún está a la espera de que la admita el administrador, puedes ver su estado en "Mis Fotos"');
+            location.href="index.php?id=7"; // my_gallery.php
           };
           img.src = e.target.result;
         };
