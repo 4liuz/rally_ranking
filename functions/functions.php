@@ -13,6 +13,15 @@
             "db" => "rally_ranking"
         )  
     );
+
+    $regexMap = json_decode(json_encode(array(
+        "usuario" => "/^[a-zA-Z0-9. ]+$/",
+        "nombre" => "/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑçÇàèìòùÀÈÌÒÙ\s]+$/",
+        "apellidos" => "/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑçÇàèìòùÀÈÌÒÙ\s]+$/",
+        "password" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/",
+        "email" => "/^[^\s@]+@[^\s@]+\.[^\s@]+$/"
+    )));
+
     /* END VARIABLES */
 
 
@@ -588,7 +597,7 @@
                 return json_decode(json_encode($status));
             case 1:
                 $status['class'] = "approved";
-                $status['message'] = "Aprovada";
+                $status['message'] = "Aprobada";
                 return json_decode(json_encode($status));
             case 2:
                 $status['class'] = "pending";
@@ -597,5 +606,31 @@
         }
     }
 
+    function ValidateUser(object $user_data, object $regexMap) {
+        foreach ($regexMap as $field => $regex) {
+            if (!isset($user_data->$field) || !preg_match($regex, $user_data->$field)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function ValidateImg($file) {
+    if (
+        $file['error'] !== UPLOAD_ERR_OK ||
+        !in_array(strtolower(pathinfo($file['name'], PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png'])
+    ) {
+        return false;
+    }
+
+    $info = getimagesize($file['tmp_name']);
+    if (!$info) return false;
+
+    list($width, $height) = $info;
+    $aspect = $width / $height;
+    $p = 2 * ($width + $height);
+
+    return ($aspect >= 1 && $aspect <= 2 && $p < 4000);
+}
     /* * * END FUNCTIONS * * */
 ?>

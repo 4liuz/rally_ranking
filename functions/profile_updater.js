@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
           alert("¡Perfil actualizado!");
         } else {
-          alert("Error al actualizar el perfil.");
+          alert("Error al actualizar el perfil. Los datos introducidos son incorrectos. Por favor revise el formato de cada campo.");
+          ProcessForm(form);
         }
       } catch (error) {
         console.error("Error en la solicitud:", error);

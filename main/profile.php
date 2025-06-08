@@ -42,7 +42,7 @@ if (isset($_SESSION['rol'])) {
 
                 <div class="label-input-row-1">
                     <label for="usuario">Nombre&nbsp;de Usuario:</label>
-                    <input id="usuario" name="usuario" type="text" value="<?php echo $user_data->usuario;?>" />
+                    <input id="usuario" name="usuario" type="text" maxlength="30" value="<?php echo $user_data->usuario;?>" />
                 </div>
                 <div id="user-exists" class="failed-form d-none">
                     <span></span>
@@ -55,7 +55,7 @@ if (isset($_SESSION['rol'])) {
 
                 <div class="label-input-row-1">
                     <label for="nombre">Nombre:</label>
-                    <input id="nombre" name="nombre" type="text" value="<?php echo $user_data->nombre;?>" />
+                    <input id="nombre" name="nombre" type="text" maxlength="50" value="<?php echo $user_data->nombre;?>" />
                 </div>
                 <div id="error-nombre" class="failed-form d-none">
                     <span class="min-5-rem"></span>
@@ -64,7 +64,7 @@ if (isset($_SESSION['rol'])) {
 
                 <div class="label-input-row-1">
                     <label for="apellidos">Apellidos:</label>
-                    <input id="apellidos" name="apellidos" type="text" value="<?php echo $user_data->apellidos;?>" />
+                    <input id="apellidos" name="apellidos" type="text" maxlength="150" value="<?php echo $user_data->apellidos;?>" />
                 </div>
                 <div id="error-apellidos" class="failed-form d-none">
                     <span class=" min-5-rem"></span>
@@ -73,7 +73,7 @@ if (isset($_SESSION['rol'])) {
 
                 <div class="label-input-row-1">
                     <label for="password">Contraseña:</label>
-                    <input id="password" name="password" type="text" value="<?php echo $user_data->password;?>" />
+                    <input id="password" name="password" type="text" maxlength="50" value="<?php echo $user_data->password;?>" />
                     <?php
                         // Asignar a variable para evitar error alert del editor
                         $false = false;
@@ -99,7 +99,7 @@ if (isset($_SESSION['rol'])) {
 
                 <div class="label-input-row-1">
                     <label for="email">Email:</label>
-                    <input id="email" name="email" type="text" value="<?php echo $user_data->email;?>" />
+                    <input id="email" name="email" type="text" maxlength="320" value="<?php echo $user_data->email;?>" />
                 </div>
                 <div id="error-email" class="failed-form d-none">
                     <span class="min-5-rem"></span>

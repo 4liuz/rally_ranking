@@ -12,7 +12,7 @@ if(!isset($_SESSION['rol'])){
 
                 <div class="label-input-row-1">
                     <label for="usuario">Nombre de Usuario:</label>
-                    <input id="usuario" name="usuario" type="text" />
+                    <input id="usuario" name="usuario" type="text" maxlength="30" />
                 </div>
                 <div id="user-exists" class="failed-form d-none">
                     <span></span>
@@ -25,7 +25,7 @@ if(!isset($_SESSION['rol'])){
 
                 <div class="label-input-row-1">
                     <label for="nombre">Nombre:</label>
-                    <input id="nombre" name="nombre" type="text" />
+                    <input id="nombre" name="nombre" type="text" maxlength="50" />
                 </div>
                 <div id="error-nombre" class="failed-form d-none">
                     <span class="min-5-rem"></span>
@@ -34,7 +34,7 @@ if(!isset($_SESSION['rol'])){
 
                 <div class="label-input-row-1">
                     <label for="apellidos">Apellidos:</label>
-                    <input id="apellidos" name="apellidos" type="text" />
+                    <input id="apellidos" name="apellidos" type="text" maxlength="150" />
                 </div>
                 <div id="error-apellidos" class="failed-form d-none">
                     <span class=" min-5-rem"></span>
@@ -43,7 +43,7 @@ if(!isset($_SESSION['rol'])){
 
                 <div class="label-input-row-1 align-items-center">
                     <label for="password">Contraseña:</label>
-                    <input id="password" name="password" type="password" />
+                    <input id="password" name="password" type="password" maxlength="50" />
 
                     <?php
                         // Asignar a variable para evitar error alert del editor
@@ -70,7 +70,7 @@ if(!isset($_SESSION['rol'])){
 
                 <div class="label-input-row-1">
                     <label for="email">Email:</label>
-                    <input id="email" name="email" type="text" />
+                    <input id="email" name="email" type="text" maxlength="320" />
                 </div>
                 <div id="error-email" class="failed-form d-none">
                     <span class="min-5-rem"></span>

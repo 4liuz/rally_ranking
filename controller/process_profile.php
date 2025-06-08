@@ -4,10 +4,8 @@
     session_start();
 
     $user_data = new user_data($_POST);
-    UpdateUser($user_data);
     
     $response = [
-        "success" => true,
         "data" => [
             "id" => $user_data->id,
             "usuario" => $user_data->usuario,
@@ -19,10 +17,21 @@
             "ultimo_usuario" => $_SESSION['usuario']
         ]
     ];
+
+    if (ValidateUser($user_data, $regexMap)) {
+
+        $response["success"] = true;
+        
+        UpdateUser($user_data);
+
+        if ($_SESSION['rol'] == "Participante") {
+            $_SESSION['usuario'] = $user_data -> usuario;
+        }
+    } else {
+        
+        $response["success"] = false;
+    }
         
     echo json_encode($response);
 
-    if ($_SESSION['rol'] == "Participante") {
-        $_SESSION['usuario'] = $user_data -> usuario;
-    }
 ?>

@@ -12,11 +12,11 @@ if (!isset($_SESSION['rol'])) {
                 <form id="login-form" action="controller/process_login.php" method="post">
                     <div class="label-input-row-1">
                         <label for="usuario">Usuario:</label>
-                        <input id="usuario" name="usuario" type="text" />
+                        <input id="usuario" name="usuario" type="text" maxlength="30" />
                     </div>
                     <div class="label-input-row-1">
                         <label for="password">Contraseña:</label>
-                        <input id="password" name="password" type="password" />
+                        <input id="password" name="password" type="password" maxlength="50" />
                     </div>
 
 
